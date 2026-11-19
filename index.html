@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Garuda: change control for AI-written code</title>
-<meta name="description" content="Garuda checks every change your AI coding assistant makes against your system's rules, before and after the edit, and keeps a tamper-evident record. It runs on your machine. Open source, Apache-2.0.">
+<meta name="description" content="Garuda checks every change your AI coding assistant makes against your system's rules, before and after the edit, and keeps a tamper-evident record. It runs on your machine. Free and open source.">
 <meta name="theme-color" content="#F7F7F3">
 <link rel="icon" href="img/favicon.png">
 <script>document.documentElement.classList.add('js')</script>
 <meta property="og:title" content="Garuda: change control for AI-written code">
-<meta property="og:description" content="Know the impact. Enforce the rules. Keep the evidence. Runs on your machine. Open source.">
+<meta property="og:description" content="Know the impact. Enforce the rules. Keep the evidence. Runs on your machine.">
 <meta property="og:image" content="img/og.png">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,7 +36,8 @@ body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--s
 img{max-width:100%;display:block}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:4px}
-code,kbd,pre{font-family:var(--mono)}
+code,pre{font-family:var(--mono)}
+code{font-size:.88em}
 .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
 .measure{max-width:62ch}
 h1,h2{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;margin:0}
@@ -46,36 +47,39 @@ h3{font:600 18px/1.35 var(--sans);margin:0}
 p{margin:0}
 .lead{font-size:19px;line-height:1.6;color:var(--text-2)}
 .small{font-size:14.5px;color:var(--muted)}
+.serif-sub{font:400 28px/1.15 var(--serif);margin:0 0 8px}
 
 /* nav */
 .nav{position:sticky;top:0;z-index:20;background:rgba(247,247,243,.86);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
 .nav.scrolled{border-bottom-color:var(--line)}
-.nav .wrap{display:flex;align-items:center;gap:28px;height:64px}
+.nav .wrap{display:flex;align-items:center;gap:22px;height:64px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:600 17px var(--sans);letter-spacing:-.01em}
 .brand img{width:30px;height:auto}
-.nav-links{display:flex;gap:24px;margin-left:auto}
+.nav-links{display:flex;gap:22px;margin-left:auto}
 .nav-links a{text-decoration:none;font-size:15px;color:var(--text-2)}
 .nav-links a:hover{color:var(--ink)}
-.btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 18px;border-radius:8px;font:500 15px var(--sans);text-decoration:none;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);cursor:pointer;transition:transform .2s var(--ease),background .2s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 18px;border-radius:8px;font:500 15px var(--sans);text-decoration:none;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);cursor:pointer;transition:transform .2s var(--ease),background .2s,border-color .2s;white-space:nowrap}
 .btn:hover{transform:translateY(-1px)}
 .btn.ink{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .btn.ink:hover{background:#2a2d2a}
 .btn.sm{height:36px;padding:0 14px;font-size:14px}
+.btn.done{border-color:var(--lime-line);background:var(--lime-soft);color:var(--lime-ink)}
 .gh svg{width:16px;height:16px}
 
 /* hero */
-.hero{padding:76px 0 96px}
+.hero{padding:72px 0 88px}
 .hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:56px;align-items:center}
 .hero h1{margin-bottom:26px}
-.hero .lead{max-width:34em;margin-bottom:32px}
-.hero .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px}
-.works{font-size:14.5px;color:var(--muted);max-width:34em}
+.hero .lead{max-width:34em;margin-bottom:30px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.prompt-note{margin-top:14px;font-size:14.5px;color:var(--muted);max-width:36em}
+.tools{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tools span{font-size:13px;color:var(--text-2);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:2px 10px}
 
 /* check panel */
 .check{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:0 1px 2px rgba(25,27,25,.04),0 24px 48px -24px rgba(25,27,25,.18);overflow:hidden}
 .check-bar{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--paper-2)}
 .check-bar .file{font:600 13px var(--mono)}
-.check-bar .who{font-size:13px;color:var(--muted)}
 .status{margin-left:auto;display:inline-flex;align-items:center;gap:7px;font:600 11px var(--mono);letter-spacing:.04em;color:var(--muted)}
 .status i{width:7px;height:7px;border-radius:50%;background:var(--line-2)}
 .check[data-state="checking"] .status i{background:var(--amber);animation:pulse 1s infinite}
@@ -90,6 +94,7 @@ p{margin:0}
 .code .del{background:var(--red-bg)}
 .code .del code{text-decoration:line-through;text-decoration-color:rgba(153,27,27,.5)}
 .code .del code::before{content:"- ";color:var(--red);display:inline-block;text-decoration:none}
+.code code{font-size:1em}
 .typed{display:inline-block;overflow:hidden;vertical-align:bottom}
 .step{display:grid}
 .js .step{grid-template-rows:0fr;opacity:0;transition:grid-template-rows .6s var(--ease),opacity .45s ease}
@@ -102,13 +107,14 @@ p{margin:0}
 .verdict .fix{font-size:13.5px}
 .v-block{background:var(--red-bg);border-color:var(--red-line)}
 .v-allow{background:var(--green-bg);border-color:var(--green-line)}
-.chip{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:5px;font:600 11px/1 var(--mono);letter-spacing:.04em;border:1px solid}
+.chip{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:5px;font:600 11px/1 var(--mono);letter-spacing:.04em;border:1px solid;white-space:nowrap}
 .c-block{color:var(--red);background:#fff;border-color:var(--red-line)}
 .c-allow{color:var(--green);background:#fff;border-color:var(--green-line)}
 .c-warn{color:var(--amber);background:var(--amber-bg);border-color:var(--amber-line)}
 .c-review{color:#4A4D48;background:var(--paper-2);border-color:var(--line-2)}
 .c-blockf{color:var(--red);background:var(--red-bg);border-color:var(--red-line)}
 .c-allowf{color:var(--green);background:var(--green-bg);border-color:var(--green-line)}
+.c-lime{color:var(--lime-ink);background:var(--lime-soft);border-color:var(--lime-line)}
 .seal{margin:0 16px 16px;display:flex;align-items:baseline;gap:10px;font:14px/1.5 var(--sans);color:var(--lime-ink);background:var(--lime-soft);border:1px solid var(--lime-line);border-radius:10px;padding:10px 14px}
 .seal b{font:600 11px var(--mono);letter-spacing:.04em;flex:none}
 .check-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px}
@@ -121,6 +127,55 @@ section{padding:112px 0}
 .head h2{margin-bottom:16px}
 .band{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 
+/* product window */
+.window{display:grid;grid-template-columns:220px minmax(0,1fr);border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface);box-shadow:0 40px 80px -40px rgba(25,27,25,.35)}
+.win-side{border-right:1px solid var(--line);background:var(--paper);padding:14px 10px;display:flex;flex-direction:column;gap:2px}
+.win-side .ws{display:flex;align-items:center;gap:8px;padding:6px 8px 14px;font:600 12.5px var(--mono)}
+.win-side .ws img{width:20px}
+.win-side button{display:flex;align-items:center;gap:10px;text-align:left;background:none;border:0;border-radius:8px;padding:9px 10px;font:500 14px var(--sans);color:var(--text-2);cursor:pointer;transition:background .2s,color .2s}
+.win-side button:hover{background:var(--paper-2);color:var(--ink)}
+.win-side button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 0 0 1px var(--line)}
+.win-side button i{font:600 10.5px var(--mono);color:var(--muted);width:18px;font-style:normal}
+.win-side .rest{margin-top:auto;padding:12px 10px 4px;font-size:12.5px;color:var(--muted);border-top:1px solid var(--line)}
+.win-main{display:flex;flex-direction:column;min-width:0}
+.win-bar{height:38px;display:flex;align-items:center;gap:7px;padding:0 14px;border-bottom:1px solid var(--line);background:var(--paper-2)}
+.win-bar i{width:10px;height:10px;border-radius:50%;background:var(--line-2)}
+.win-bar span{margin-left:10px;font:12px var(--mono);color:var(--muted)}
+.stage{position:relative;aspect-ratio:1865/1008;background:var(--paper)}
+.stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transform:scale(1.01);transition:opacity .5s ease,transform .7s var(--ease)}
+.stage img.on{opacity:1;transform:none}
+.win-cap{padding:12px 16px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);min-height:48px}
+.callouts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px;margin-top:44px}
+.callouts h3{margin-bottom:6px}
+.callouts p{color:var(--text-2);font-size:16px}
+
+/* stages */
+.stages{display:flex;flex-direction:column;gap:88px}
+.stg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:64px;align-items:center}
+.stg:nth-child(even) .stg-text{order:2}
+.stg-num{font:400 18px var(--mono);color:var(--muted);display:block;margin-bottom:14px}
+.stg h3{font:400 clamp(30px,3.4vw,42px)/1.08 var(--serif);margin-bottom:14px}
+.stg p{color:var(--text-2)}
+.stg ul{list-style:none;margin:20px 0 0;padding:0;border-top:1px solid var(--line-2)}
+.stg li{padding:11px 0;border-bottom:1px solid var(--line-2);color:var(--text-2);font-size:16px}
+.stg li b{color:var(--ink);font-weight:600}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:0 30px 60px -36px rgba(25,27,25,.3);overflow:hidden}
+.card-h{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--paper-2);font:600 12.5px var(--mono)}
+.card-h .chip{margin-left:auto}
+.card-b{padding:18px}
+.brief{background:var(--term);color:var(--term-text);font:13px/1.75 var(--mono);padding:20px 22px;border-radius:0;white-space:pre-wrap;word-break:break-word}
+.brief .k{color:var(--lime)}
+.brief .dim{color:var(--term-dim)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:10px 18px;font-size:14.5px}
+.kv dt{color:var(--muted);font:12.5px/1.6 var(--mono)}
+.kv dd{margin:0;font:13px/1.6 var(--mono);word-break:break-word}
+.meter{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:16px}
+.meter div{border:1px solid var(--line);border-radius:10px;padding:14px;background:var(--paper)}
+.meter b{display:block;font:400 40px/1 var(--serif)}
+.meter span{font-size:13.5px;color:var(--muted)}
+.meter .new b{color:var(--green)}
+.card-note{padding:12px 16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+
 /* privacy */
 .privacy .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
 .facts{list-style:none;margin:36px 0 0;padding:0;border-top:1px solid var(--line-2)}
@@ -129,23 +184,9 @@ section{padding:112px 0}
 .facts p{color:var(--text-2);font-size:16px}
 .diagram{position:sticky;top:96px}
 .diagram svg{width:100%;height:auto;display:block}
-.diagram .note{margin-top:14px}
 .optin{margin-top:28px;padding:18px 20px;border:1px dashed var(--line-2);border-radius:12px;background:var(--surface)}
 .optin h3{font-size:16px;margin-bottom:6px}
 .optin ul{margin:0;padding-left:18px;color:var(--text-2);font-size:15.5px}
-
-/* how */
-.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;counter-reset:s}
-.stepcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:14px}
-.stepcard .n{font:400 46px/1 var(--serif);color:var(--line-2)}
-.stepcard p{color:var(--text-2);font-size:16px}
-.artifact{margin-top:auto;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px;font:12.5px/1.65 var(--mono);color:var(--text-2)}
-.artifact .k{color:var(--muted)}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.glossary{margin-top:44px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px}
-.glossary div{display:flex;gap:14px;align-items:baseline;padding:14px 0;border-top:1px solid var(--line)}
-.glossary .chip{flex:none}
-.glossary p{font-size:15.5px;color:var(--text-2)}
 
 /* terminal */
 .term{background:var(--term);border-radius:14px;overflow:hidden;border:1px solid #262b26;box-shadow:0 30px 60px -30px rgba(25,27,25,.45)}
@@ -161,6 +202,31 @@ section{padding:112px 0}
 .term .ln.on{opacity:1;transform:none}
 .term-note{margin-top:14px}
 
+/* agents */
+.handoff{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px}
+.agents-row{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:12px}
+.agent{border:1px solid var(--line-2);border-radius:10px;padding:14px 16px;background:var(--paper);display:flex;flex-direction:column;gap:2px}
+.agent b{font-weight:600}
+.agent span{font-size:13.5px;color:var(--muted)}
+.hop{position:relative;width:110px;height:34px;display:flex;align-items:flex-end;justify-content:center}
+.hop::before{content:"";position:absolute;left:0;right:0;top:9px;border-top:1.5px dashed var(--line-2)}
+.hop span{font:12px var(--mono);color:var(--muted)}
+.hop i{position:absolute;top:4px;left:0;width:11px;height:11px;border-radius:3px;background:var(--lime);box-shadow:inset 0 0 0 1px var(--lime-line)}
+.handoff.play .hop i{animation:hop 1.4s var(--ease) forwards}
+.handoff.play .hop:nth-of-type(4) i{animation-delay:1.1s}
+@keyframes hop{from{left:0}to{left:calc(100% - 11px)}}
+.ground{margin-top:18px;padding:12px 16px;border-radius:10px;background:var(--ink);color:var(--paper);font-size:14.5px}
+.agent-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;margin-top:56px}
+.skills{margin:0 0 14px}
+.skills div{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:14px;padding:12px 0;border-top:1px solid var(--line)}
+.skills dt{font:600 13px/1.6 var(--mono)}
+.skills dd{margin:0;color:var(--text-2);font-size:15.5px}
+.asks{width:100%;border-collapse:collapse;font-size:15.5px}
+.asks td{padding:12px 0;border-top:1px solid var(--line);vertical-align:top;color:var(--text-2)}
+.asks td:last-child{text-align:right;padding-left:14px}
+.asks code{font-size:12.5px;color:var(--ink);white-space:nowrap}
+.textlink{font-size:15px;font-weight:500;text-underline-offset:3px}
+
 /* features */
 .feat{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 64px}
 .feat .grp{padding:30px 0;border-top:1px solid var(--line-2);display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:20px}
@@ -171,27 +237,17 @@ section{padding:112px 0}
 .feat code{font-size:13px;background:var(--paper-2);border:1px solid var(--line);border-radius:4px;padding:0 4px;color:var(--ink)}
 .langs{margin-top:28px;font-size:15.5px;color:var(--text-2)}
 
-/* dashboard viewer */
-.viewer-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
-.viewer-tabs button{height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--line-2);background:var(--surface);color:var(--text-2);font:500 14px var(--sans);cursor:pointer;transition:background .2s,color .2s}
-.viewer-tabs button[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
-.frame{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface);box-shadow:0 24px 50px -30px rgba(25,27,25,.3)}
-.frame-bar{height:34px;display:flex;align-items:center;gap:7px;padding:0 14px;border-bottom:1px solid var(--line);background:var(--paper-2)}
-.frame-bar i{width:10px;height:10px;border-radius:50%;background:var(--line-2)}
-.frame-bar span{margin-left:10px;font:12px var(--mono);color:var(--muted)}
-.stage{position:relative;aspect-ratio:1874/1008}
-.stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transform:scale(1.01);transition:opacity .5s ease,transform .7s var(--ease)}
-.stage img.on{opacity:1;transform:none}
-.viewer-cap{margin-top:14px;min-height:3em}
+/* who: letter grid */
+.who .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
+.grid-letters{font:500 clamp(13px,1.45vw,17px)/1.9 var(--mono);letter-spacing:.42em;color:#C4C7BE;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px 22px;user-select:none;white-space:pre;overflow:hidden;text-align:center}
+.grid-letters .w{color:#C4C7BE;transition:color .5s ease,background .5s ease;border-radius:4px}
+.grid-letters .w.lit{color:var(--ink);background:var(--lime-soft)}
+.domains{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--line-2)}
+.domains li{display:grid;grid-template-columns:minmax(0,180px) minmax(0,1fr);gap:16px;padding:14px 0;border-bottom:1px solid var(--line-2)}
+.domains b{font-weight:600}
+.domains span{color:var(--text-2);font-size:15.5px}
 
-/* measured */
-.measured{width:100%;border-collapse:collapse;font-size:16px}
-.measured td{padding:16px 0;border-top:1px solid var(--line);vertical-align:top}
-.measured td:first-child{font:400 30px/1.1 var(--serif);width:150px;padding-right:20px}
-.measured td:last-child{color:var(--text-2)}
-.measured tr:last-child td{border-bottom:1px solid var(--line)}
-
-/* install */
+/* install + connect */
 .install{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:48px;align-items:start}
 .tabs{display:flex;gap:4px;border-bottom:1px solid var(--line-2);margin-bottom:18px;overflow-x:auto}
 .tabs button{background:none;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;padding:10px 12px;font:500 15px var(--sans);color:var(--muted);cursor:pointer;white-space:nowrap}
@@ -202,54 +258,116 @@ section{padding:112px 0}
 .copy{position:absolute;top:10px;right:10px;height:30px;padding:0 10px;border-radius:6px;border:1px solid #333a33;background:#1d211d;color:var(--term-text);font:500 12.5px var(--sans);cursor:pointer}
 .copy.done{color:var(--lime);border-color:#4b5420}
 .panel p{color:var(--text-2);font-size:15.5px;margin-bottom:12px}
-.plug{width:100%;border-collapse:collapse;font-size:15px}
-.plug td{padding:12px 0;border-top:1px solid var(--line);vertical-align:top}
-.plug td:first-child{font-weight:600;width:38%;padding-right:12px}
-.plug code{font-size:12.5px;color:var(--text-2);word-break:break-word}
 .tested{margin-top:18px;padding:14px 16px;border-left:3px solid var(--amber-line);background:var(--surface);font-size:14.5px;color:var(--text-2);border-radius:0 8px 8px 0}
+.connect{margin-top:64px;padding-top:40px;border-top:1px solid var(--line-2)}
+.crow{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:24px;padding:20px 0;border-top:1px solid var(--line)}
+.cname{font-weight:600;display:flex;flex-direction:column}
+.cname span{font-weight:400;font-size:14px;color:var(--muted)}
+.cact .cmd{margin-bottom:8px}
 
-/* limits + teams */
+/* limits */
 .limits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 64px}
 .limits div{padding:22px 0;border-top:1px solid var(--line-2)}
 .limits h3{margin-bottom:6px}
 .limits p{color:var(--text-2);font-size:16px}
-.teams{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;margin-top:8px}
-.tcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px}
-.tcard h3{font:400 30px/1.1 var(--serif);margin-bottom:12px}
-.tcard p{color:var(--text-2);font-size:16px}
-.tcard ul{margin:12px 0 0;padding-left:18px;color:var(--text-2);font-size:15.5px}
-.tag{display:inline-block;margin-bottom:14px;font:600 11px var(--mono);letter-spacing:.04em;padding:3px 8px;border-radius:5px;border:1px solid}
+
+/* services */
+.svc{border-top:1px solid var(--line-2)}
+.srow{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr) auto;gap:28px;align-items:start;padding:28px 0;border-bottom:1px solid var(--line-2)}
+.srow h3{font:400 28px/1.15 var(--serif)}
+.srow p{color:var(--text-2);font-size:16px;max-width:60ch}
+.tag{display:inline-block;vertical-align:middle;margin:0 0 0 6px;font:600 11px var(--mono);letter-spacing:.04em;padding:3px 8px;border-radius:5px;border:1px solid}
 .tag.now{color:var(--green);background:var(--green-bg);border-color:var(--green-line)}
 .tag.later{color:var(--amber);background:var(--amber-bg);border-color:var(--amber-line)}
-.tcard .btn{margin-top:22px}
+
+/* guides */
+.guides{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.guide{display:flex;flex-direction:column;gap:10px;padding:22px;background:var(--surface);border:1px solid var(--line);border-radius:14px;text-decoration:none;transition:border-color .2s,transform .2s var(--ease)}
+.guide:hover{border-color:var(--line-2);transform:translateY(-2px)}
+.guide b{font:400 25px/1.15 var(--serif)}
+.guide span{color:var(--text-2);font-size:15px}
+.guide em{margin-top:auto;font:normal 500 14px var(--sans);color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+
+/* contact */
+.contact{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:64px;align-items:start}
+.mailbox{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:18px 20px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.mailbox .mail{font:400 26px/1.2 var(--serif);text-decoration:none}
+.mailbox .mail:hover{text-decoration:underline;text-underline-offset:4px}
+.form{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:16px}
+.form label{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500}
+.form .lbl{display:block}
+.form .opt{font-weight:400;color:var(--muted)}
+.form input,.form select,.form textarea{font:400 16px/1.4 var(--sans);color:var(--ink);background:var(--paper);border:1px solid var(--line-2);border-radius:8px;padding:11px 12px;width:100%}
+.form textarea{resize:vertical;min-height:120px}
+.form input:focus,.form select:focus,.form textarea:focus{outline:2px solid var(--ink);outline-offset:1px;border-color:var(--ink)}
+.form .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+.form .btn{align-self:flex-start}
+.form-note.err{color:var(--red)}
+.form-note.ok{color:var(--green)}
+.form.flash{animation:flash 1.2s ease}
+@keyframes flash{30%{box-shadow:0 0 0 6px rgba(213,230,106,.9)}100%{box-shadow:0 0 0 0 rgba(213,230,106,0)}}
 
 /* closing + footer */
-.closing{text-align:left;padding:120px 0}
-.closing h2{max-width:16em;margin-bottom:28px}
-footer{border-top:1px solid var(--line);padding:36px 0 56px;font-size:14.5px;color:var(--muted)}
-footer .wrap{display:flex;gap:24px;flex-wrap:wrap;align-items:center}
-footer nav{display:flex;gap:20px;flex-wrap:wrap;margin-left:auto}
-footer a{text-decoration:none;color:var(--text-2)}
-footer a:hover{color:var(--ink)}
+.closing{padding:120px 0;background:var(--ink);color:var(--paper)}
+.closing .wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:48px;align-items:end}
+.closing h2{max-width:14em}
+.closing p{color:#B9BDB4;margin-top:18px;max-width:40em}
+.closing .ctas{justify-content:flex-end}
+.closing .btn{background:transparent;color:var(--paper);border-color:#3A3E3A}
+.closing .btn.lime{background:var(--lime);color:var(--ink);border-color:var(--lime)}
+footer{padding:64px 0 40px;font-size:14.5px;color:var(--muted)}
+.foot{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(4,minmax(0,1fr));gap:32px}
+.foot h4{font:600 13.5px var(--sans);color:var(--ink);margin:0 0 12px}
+.foot ul{list-style:none;margin:0;padding:0}
+.foot li{margin:0 0 8px}
+.foot a{text-decoration:none;color:var(--text-2)}
+.foot a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.foot .about p{margin-top:12px;max-width:26em}
+.base{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:48px;padding-top:20px;border-top:1px solid var(--line)}
 
 @media (max-width:980px){
-  .hero .wrap,.privacy .wrap,.install{grid-template-columns:minmax(0,1fr);gap:44px}
+  .hero .wrap,.privacy .wrap,.install,.who .wrap,.agent-grid,.contact,.closing .wrap{grid-template-columns:minmax(0,1fr);gap:44px}
   .diagram{position:static}
-  .steps{grid-template-columns:minmax(0,1fr)}
-  .feat,.limits,.glossary,.teams{grid-template-columns:minmax(0,1fr)}
+  .stg{grid-template-columns:minmax(0,1fr);gap:28px}
+  .stg:nth-child(even) .stg-text{order:0}
+  .feat,.limits{grid-template-columns:minmax(0,1fr)}
   .feat .grp{grid-template-columns:minmax(0,1fr);gap:12px}
+  .callouts{grid-template-columns:minmax(0,1fr);gap:22px}
+  .window{grid-template-columns:minmax(0,1fr)}
+  .win-side{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:8px}
+  .win-side .ws,.win-side .rest{display:none}
+  .win-side button{white-space:nowrap}
+  .guides{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .srow{grid-template-columns:minmax(0,1fr);gap:12px}
+  .crow{grid-template-columns:minmax(0,1fr);gap:10px}
+  .agents-row{grid-template-columns:minmax(0,1fr);gap:6px}
+  .hop{width:auto;height:46px;flex-direction:column;align-items:flex-start;padding-left:26px;justify-content:center}
+  .hop::before{left:12px;right:auto;top:0;bottom:0;border-top:0;border-left:1.5px dashed var(--line-2)}
+  .hop i{left:7px!important;top:0;animation:none!important}
+  .closing .ctas{justify-content:flex-start}
+  .foot{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .foot .about{grid-column:1/-1}
   .nav-links{display:none}
-  .nav .btn{margin-left:auto}
+  .nav .gh{margin-left:auto}
 }
 @media (max-width:560px){
   .wrap{padding:0 16px}
   section{padding:80px 0}
-  .hero{padding:44px 0 72px}
+  .hero{padding:40px 0 64px}
   .lead{font-size:17.5px}
   .code{font-size:12px}
   .term pre{padding:18px 16px;min-height:0;font-size:12px}
-  .measured td:first-child{width:96px;font-size:24px}
   .cmd{padding-right:18px;padding-top:48px}
+  .gh-label{display:none}
+  .form{padding:20px}
+  .form .two{grid-template-columns:minmax(0,1fr)}
+  .skills div,.domains li{grid-template-columns:minmax(0,1fr);gap:2px}
+  .asks tr{display:flex;flex-direction:column}
+  .asks td:last-child{text-align:left;border-top:0;padding:0 0 12px}
+  .guides{grid-template-columns:minmax(0,1fr)}
+  .meter b{font-size:32px}
+  .grid-letters{letter-spacing:.2em;padding:18px 10px}
+  .closing{padding:88px 0}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -265,11 +383,13 @@ footer a:hover{color:var(--ink)}
     <nav class="nav-links" aria-label="Sections">
       <a href="#how">How it works</a>
       <a href="#privacy">Privacy</a>
-      <a href="#features">Features</a>
+      <a href="#agents">Agents</a>
       <a href="#install">Install</a>
-      <a href="#teams">Teams</a>
+      <a href="#services">Services</a>
+      <a href="#guides">Guides</a>
     </nav>
-    <a class="btn sm gh" href="https://github.com/myshra777-ai/garuda"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a>
+    <a class="btn sm gh" href="https://github.com/myshra777-ai/garuda" aria-label="Garuda on GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span class="gh-label">GitHub</span></a>
+    <a class="btn sm ink js-call" href="#contact">Book a call</a>
   </div>
 </header>
 
@@ -283,16 +403,17 @@ footer a:hover{color:var(--ink)}
       <p class="lead">Before your coding assistant edits, Garuda tells it what depends on that code and which rules apply. After the edit, it checks the change and says allow, warn, review or block. Every saved decision goes into a tamper-evident record. All of it runs on your machine.</p>
       <div class="ctas">
         <a class="btn ink" href="#install">Install Garuda</a>
-        <a class="btn" href="#output">See real output</a>
+        <button class="btn" id="copy-prompt" type="button">Copy setup prompt</button>
       </div>
-      <p class="works">Free and open source under Apache-2.0. Works with Claude Code, Cursor, Codex and any assistant that speaks MCP.</p>
+      <p class="prompt-note">Paste the prompt into your assistant and it installs Garuda for you, using only the official instructions.</p>
+      <div class="tools" aria-label="Works with"><span>ChatGPT</span><span>Claude</span><span>Claude Code</span><span>Cursor</span><span>Codex</span></div>
     </div>
 
     <div>
       <div class="check" id="check" data-state="idle" aria-label="Illustration: an assistant edit is blocked, repaired and allowed">
         <div class="check-bar">
           <span class="file">internal/payment/checkout.go</span>
-                    <span class="status" aria-live="polite"><i></i><span id="status-text">Waiting</span></span>
+          <span class="status" aria-live="polite"><i></i><span id="status-text">Waiting</span></span>
         </div>
         <ol class="code">
           <li><span class="ln">3</span><code>import (</code></li>
@@ -331,84 +452,157 @@ footer a:hover{color:var(--ink)}
   </div>
 </div>
 
+<!-- PRODUCT -->
+<section id="product" class="band">
+  <div class="wrap">
+    <div class="head measure">
+      <h2>Your whole system, on localhost</h2>
+      <p class="lead">A dashboard with ten views, served from your own machine. Pick a view to see the real screen.</p>
+    </div>
+    <div class="window">
+      <div class="win-side" role="tablist" aria-label="Dashboard views">
+        <div class="ws"><img src="img/mark.png" alt="">your-workspace</div>
+        <button role="tab" aria-selected="true" data-shot="0"><i>00</i>Overview</button>
+        <button role="tab" aria-selected="false" data-shot="1"><i>+</i>Add a project</button>
+        <button role="tab" aria-selected="false" data-shot="2"><i>04</i>Docs to rules</button>
+        <button role="tab" aria-selected="false" data-shot="3"><i>09</i>Data and logic audit</button>
+        <div class="rest">Also: architecture map, risk hub, change review, evidence ledger, agents and sessions, decision history.</div>
+      </div>
+      <div class="win-main">
+        <div class="win-bar"><i></i><i></i><i></i><span>localhost:8080/dashboard</span></div>
+        <div class="stage">
+          <img class="on" src="img/about-garuda.jpg" alt="Garuda dashboard overview with the map of its views">
+          <img src="img/create-workspace.jpg" alt="Creating a workspace by pasting a repository link" loading="lazy">
+          <img src="img/docs-to-guardrails.jpg" alt="Design documents turned into enforced rules" loading="lazy">
+          <img src="img/data-logic-audit.jpg" alt="Data and logic audit catching a 10x mismatch between two calculations" loading="lazy">
+        </div>
+        <p class="win-cap" id="win-cap">The front page: every part of Garuda, one click away.</p>
+      </div>
+    </div>
+    <div class="callouts">
+      <div><h3>Guarded edits</h3><p>Checks run before and after every edit your assistant makes, and again on every pull request.</p></div>
+      <div><h3>A person decides</h3><p>When an assistant proposes a rulebook, a formula choice or a fix to a data mismatch, it waits for a named person to sign off.</p></div>
+      <div><h3>Plugs into your tools</h3><p>MCP for any assistant, skills, a GitHub Action, and Slack or Teams alerts.</p></div>
+    </div>
+  </div>
+</section>
+
 <!-- HOW -->
-<section id="how" class="band">
+<section id="how">
   <div class="wrap">
     <div class="head measure">
       <h2>Three moments in every change</h2>
       <p class="lead">Your assistant is good at writing code. It does not automatically know every decision your team made, every part of the system that depends on the code, or every rule that has to stay true.</p>
     </div>
-    <div class="steps">
-      <div class="stepcard">
-        <span class="n">1</span>
-        <h3>Before the edit: know the impact</h3>
-        <p>The assistant asks Garuda first and learns who calls the code, how far a change spreads, and which written rules apply.</p>
-        <div class="artifact">"12 other things depend on this. It is high-risk code. Rule: the payment handler must not talk to the database directly."</div>
+    <div class="stages">
+      <div class="stg">
+        <div class="stg-text">
+          <span class="stg-num">1.0</span>
+          <h3>Before the edit, Garuda tells the assistant what it is about to touch.</h3>
+          <p>The assistant asks first, so it starts with the facts instead of guessing.</p>
+          <ul>
+            <li><b>Who depends on it.</b> Direct callers, and how far a change spreads.</li>
+            <li><b>How critical it is.</b> High, medium or low tier.</li>
+            <li><b>Which rules apply.</b> Your policies and the decisions in your docs.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-h">Pre-edit briefing<span class="chip c-lime">TALON</span></div>
+          <div class="brief"><span class="k">GARUDA TALON PRE-EDIT BRIEFING</span>
+<span class="dim">Target:</span>  internal/store/merkle_v1.go (AppendLeafAndSealTx)
+<span class="dim">Tier:</span>    HIGH_SEVERE (18 direct callers · ~60 transitive)
+<span class="dim">Rules:</span>   ADR-0002 (RFC 6962 Canonical Merkle Layer)
+<span class="dim">Verdict:</span> ALLOW → call garuda.talon_verify_edit after edit</div>
+          <p class="card-note">Example from the dashboard, briefing an assistant before it edits Garuda's own ledger code.</p>
+        </div>
       </div>
-      <div class="stepcard">
-        <span class="n">2</span>
-        <h3>After the edit: enforce the rules</h3>
-        <p>The change is checked against your rules. Problems this change introduced are kept apart from problems that were already there, so you only answer for what is new.</p>
-        <div class="artifact chips"><span class="chip c-allowf">ALLOW</span><span class="chip c-warn">WARN</span><span class="chip c-review">REVIEW</span><span class="chip c-blockf">BLOCK</span></div>
-      </div>
-      <div class="stepcard">
-        <span class="n">3</span>
-        <h3>Afterwards: keep the evidence</h3>
-        <p>A saved check becomes a receipt in a Merkle log that shows if a record was changed later, with the exact command to reproduce it.</p>
-        <div class="artifact"><span class="k">Receipt SHA</span> f7d109f685632559<br><span class="k">Merkle Seal</span> RFC 6962 block #2012<br><span class="k">Status</span> COMMITTED ✓</div>
-      </div>
-    </div>
 
-    <div class="glossary" aria-label="What each signal means">
-      <div><span class="chip c-blockf">BLOCK</span><p>Stops the change and tells the assistant exactly what to move and where.</p></div>
-      <div><span class="chip c-allowf">SUPPORTED</span><p>The evidence backs this claim, within what was checked.</p></div>
-      <div><span class="chip c-warn">UNVERIFIED</span><p>Found in the code or docs but not confirmed yet. Not an error.</p></div>
-      <div><span class="chip c-blockf">CONTRADICTED</span><p>The evidence conflicts with a rule or claim you wrote down.</p></div>
+      <div class="stg">
+        <div class="stg-text">
+          <span class="stg-num">2.0</span>
+          <h3>After the edit, every change gets a verdict.</h3>
+          <p>Garuda checks the change against your rules and tells the assistant how to fix what it broke.</p>
+          <ul>
+            <li><b>Four verdicts.</b> Allow, warn, review or block.</li>
+            <li><b>Only what is new.</b> Problems the change introduced are kept apart from old ones.</li>
+            <li><b>Repair steps.</b> Plain instructions the assistant can follow.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-h">Talon guard · 10 files changed<span class="chip c-allowf">ALLOW</span></div>
+          <div class="card-b">
+            <div class="meter">
+              <div class="new"><b>0</b><span>new violations from this change</span></div>
+              <div><b>34</b><span>older problems, counted separately</span></div>
+            </div>
+            <div class="chips" style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip c-allowf">ALLOW</span><span class="chip c-warn">WARN</span><span class="chip c-review">REVIEW</span><span class="chip c-blockf">BLOCK</span></div>
+          </div>
+          <p class="card-note">Recorded on a real commit to Garuda's own repository, 19 November 2026.</p>
+        </div>
+      </div>
+
+      <div class="stg">
+        <div class="stg-text">
+          <span class="stg-num">3.0</span>
+          <h3>At review, you have proof you can hand to anyone.</h3>
+          <p>Saved checks become receipts in a Merkle log, so anyone can see later whether a record was changed.</p>
+          <ul>
+            <li><b>A receipt per decision.</b> With the exact command to reproduce it.</li>
+            <li><b>A pull request check.</b> BLOCK fails it; make it required and nobody merges past it.</li>
+            <li><b>Verification.</b> Check a receipt and its proof yourself.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-h">Evidence log<span class="chip c-lime">COMMITTED ✓</span></div>
+          <div class="card-b">
+            <dl class="kv">
+              <dt>Receipt</dt><dd>f7d109f685632559</dd>
+              <dt>Seal</dt><dd>RFC 6962 block #2012</dd>
+              <dt>Graph</dt><dd>2,228 entities · 9,353 relationships</dd>
+              <dt>Reproduce</dt><dd>garuda check --commit 35a29fdf0f9e --worktree-dirty --dirty-tree-hash a500dfec6b44</dd>
+            </dl>
+          </div>
+          <p class="card-note">From the same recorded run.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- PRIVACY -->
-<section id="privacy" class="privacy">
+<section id="privacy" class="privacy band">
   <div class="wrap">
     <div>
       <h2>Your code stays on your machine</h2>
       <p class="lead" style="margin-top:16px">Garuda is built to sit next to your most sensitive code: payments, ledgers, health data. So it was designed from the start to need nothing from us.</p>
       <ul class="facts">
-        <li><h3>It runs where your code is</h3><p>Analysis, the code map and every check run locally. Results live in a PostgreSQL database on your own machine, which setup starts on 127.0.0.1.</p></li>
+        <li><h3>It runs where your code is</h3><p>Analysis, the code graph and every check run locally. Results live in a PostgreSQL database on your own machine, which setup starts on 127.0.0.1.</p></li>
         <li><h3>There is no Garuda cloud</h3><p>No account with us and nothing to sign up for. The dashboard's login exists only on your machine.</p></li>
         <li><h3>Garuda itself uses no AI model</h3><p>Its analysis and checks are deterministic code, so Garuda sends nothing to an AI provider. The analyzer is tested to give identical results on repeated runs.</p></li>
         <li><h3>Telemetry is off</h3><p>It stays off unless you switch it on and give it an address of your own. There is no default destination.</p></li>
         <li><h3>The dashboard loads nothing from the internet</h3><p>No outside scripts, fonts or trackers. It works on an air-gapped machine.</p></li>
-        <li><h3>Every line is open</h3><p>Apache-2.0. Read it, audit it, build it yourself.</p></li>
+        <li><h3>Every line is open</h3><p>Read it, audit it, build it yourself.</p></li>
       </ul>
     </div>
     <div class="diagram">
-      <svg viewBox="0 0 520 520" role="img" aria-labelledby="dg-t">
+      <svg viewBox="0 0 520 500" role="img" aria-labelledby="dg-t">
         <title id="dg-t">Everything Garuda uses sits inside your machine. Outside connections exist only when you set them up.</title>
-        <defs>
-          <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#4A4D48"/></marker>
-        </defs>
+        <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#4A4D48"/></marker></defs>
         <rect x="10" y="10" width="500" height="352" rx="18" fill="#FFFFFF" stroke="#191B19" stroke-width="1.5"/>
         <text x="32" y="44" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="#191B19">Your machine</text>
-        <!-- nodes -->
         <g font-family="Inter,sans-serif" font-size="13.5" fill="#191B19">
           <rect x="34" y="70" width="190" height="58" rx="10" fill="#F7F7F3" stroke="#CECEC5"/>
           <text x="52" y="95" font-weight="600">Your AI assistant</text>
           <text x="52" y="114" font-size="12" fill="#6F736B">Claude Code, Cursor, Codex</text>
-
           <rect x="296" y="70" width="190" height="58" rx="10" fill="#F7F7F3" stroke="#CECEC5"/>
           <text x="314" y="95" font-weight="600">Your code</text>
           <text x="314" y="114" font-size="12" fill="#6F736B">read from disk</text>
-
           <rect x="128" y="168" width="264" height="70" rx="12" fill="#191B19"/>
           <text x="148" y="197" font-weight="600" fill="#F7F7F3">Garuda</text>
           <text x="148" y="218" font-size="12" fill="#D5E66A">analyzer, rules, guard, MCP</text>
-
           <rect x="34" y="278" width="214" height="58" rx="10" fill="#F7F7F3" stroke="#CECEC5"/>
           <text x="52" y="303" font-weight="600">Local database</text>
           <text x="52" y="322" font-size="12" fill="#6F736B">PostgreSQL on 127.0.0.1</text>
-
           <rect x="272" y="278" width="214" height="58" rx="10" fill="#EEF4C8" stroke="#C5D856"/>
           <text x="290" y="303" font-weight="600">Evidence log</text>
           <text x="290" y="322" font-size="12" fill="#334006">Merkle receipts</text>
@@ -419,13 +613,12 @@ footer a:hover{color:var(--ink)}
           <path d="M200 238 L160 276" marker-end="url(#ar)"/>
           <path d="M320 238 L360 276" marker-end="url(#ar)"/>
         </g>
-        <!-- outside -->
         <g font-family="Inter,sans-serif">
-          <path class="flow" d="M260 362 L260 420" stroke="#991B1B" stroke-width="1.4" stroke-dasharray="4 5" fill="none"/>
-          <circle cx="260" cy="420" r="11" fill="#FDECEC" stroke="#F3B8B8"/>
-          <path d="M255 415 L265 425 M265 415 L255 425" stroke="#991B1B" stroke-width="1.6"/>
-          <text x="260" y="458" text-anchor="middle" font-size="14" font-weight="600" fill="#191B19">Garuda servers</text>
-          <text x="260" y="478" text-anchor="middle" font-size="12.5" fill="#6F736B">There are none. Nothing is sent to us.</text>
+          <path d="M260 362 L260 414" stroke="#991B1B" stroke-width="1.4" stroke-dasharray="4 5" fill="none"/>
+          <circle cx="260" cy="414" r="11" fill="#FDECEC" stroke="#F3B8B8"/>
+          <path d="M255 409 L265 419 M265 409 L255 419" stroke="#991B1B" stroke-width="1.6"/>
+          <text x="260" y="452" text-anchor="middle" font-size="14" font-weight="600" fill="#191B19">Garuda servers</text>
+          <text x="260" y="472" text-anchor="middle" font-size="12.5" fill="#6F736B">There are none. Nothing is sent to us.</text>
         </g>
       </svg>
       <div class="optin">
@@ -442,11 +635,11 @@ footer a:hover{color:var(--ink)}
 </section>
 
 <!-- REAL OUTPUT -->
-<section id="output" class="band">
+<section id="output">
   <div class="wrap">
     <div class="head measure">
       <h2>Real output, as printed</h2>
-      <p class="lead">Two recorded runs, shortened, with nothing reworded. No mock-ups.</p>
+      <p class="lead">Two recorded runs, shortened, with nothing reworded.</p>
     </div>
     <div class="term" id="term">
       <div class="term-tabs" role="tablist" aria-label="Recorded runs">
@@ -460,19 +653,70 @@ footer a:hover{color:var(--ink)}
   </div>
 </section>
 
+<!-- AGENTS -->
+<section id="agents" class="band">
+  <div class="wrap">
+    <div class="head measure">
+      <h2>One Garuda for every assistant you use</h2>
+      <p class="lead">Cursor, Claude Code and Codex all talk to the same Garuda on your machine. They see the same rules and the same code graph, and their work lands in the same evidence log.</p>
+    </div>
+    <div class="handoff" id="handoff" aria-label="A task handed from Cursor to Claude Code to Codex through Garuda">
+      <div class="agents-row">
+        <div class="agent"><b>Cursor</b><span>starts the task</span></div>
+        <div class="hop"><i></i><span>checkpoint</span></div>
+        <div class="agent"><b>Claude Code</b><span>resumes it</span></div>
+        <div class="hop"><i></i><span>checkpoint</span></div>
+        <div class="agent"><b>Codex</b><span>finishes it</span></div>
+      </div>
+      <div class="ground">Garuda on your machine: one set of rules, one code graph, one evidence log</div>
+    </div>
+    <p class="small" style="margin-top:14px">Hand a task from one assistant to another. Garuda saves a checkpoint of where the first one got to and transfers ownership, and the next one resumes from it. A checkpoint can be resumed once.</p>
+
+    <div class="agent-grid">
+      <div>
+        <h3 class="serif-sub">Six skills your assistant can add</h3>
+        <p class="small" style="margin-bottom:14px">Short playbooks that tell the assistant when to call Garuda. They come with the Claude Code plugin, and the files are in the repository for any other assistant.</p>
+        <dl class="skills">
+          <div><dt>pre-edit-governance</dt><dd>Before changing code: proceed, revise, or ask a human?</dd></div>
+          <div><dt>change-impact</dt><dd>Who calls this, and how far does the damage spread?</dd></div>
+          <div><dt>post-edit-verification</dt><dd>After the edit: any new violations in this diff?</dd></div>
+          <div><dt>violation-repair</dt><dd>A change was blocked. Fix it without breaking something else.</dd></div>
+          <div><dt>architecture-review</dt><dd>Does the real code match the documented design?</dd></div>
+          <div><dt>evidence-verification</dt><dd>Is this claim backed by code, and is the receipt genuine?</dd></div>
+        </dl>
+        <a class="textlink" href="https://github.com/myshra777-ai/garuda/tree/main/skills">Browse the skill files</a>
+      </div>
+      <div>
+        <h3 class="serif-sub">What your assistant can ask</h3>
+        <p class="small" style="margin-bottom:14px">54 tools over MCP, 41 of them read-only. A few of them:</p>
+        <table class="asks">
+          <tr><td>What breaks if I change this?</td><td><code>garuda.blast_radius</code></td></tr>
+          <tr><td>Can I edit this file, and which rules apply?</td><td><code>garuda.talon_pre_edit</code></td></tr>
+          <tr><td>Did my edit break a rule?</td><td><code>garuda.talon_verify_edit</code></td></tr>
+          <tr><td>Do the docs and the code disagree?</td><td><code>garuda.detect_contradictions</code></td></tr>
+          <tr><td>Is this receipt genuine?</td><td><code>garuda.verify_receipt</code></td></tr>
+          <tr><td>Pass this task to another assistant</td><td><code>garuda.handoff</code>, <code>garuda.resume</code></td></tr>
+        </table>
+        <p class="small" style="margin-top:14px">The dashboard's Agents and Sessions view shows each assistant's sessions on your machine.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FEATURES -->
 <section id="features">
   <div class="wrap">
     <div class="head measure">
-      <h2>What you get, free</h2>
-      <p class="lead">Everything below is in the open-source release and runs locally.</p>
+      <h2>Everything in the free engine</h2>
+      <p class="lead">All of this is open source and runs locally.</p>
     </div>
     <div class="feat">
       <div class="grp"><h3>For your AI assistant</h3><ul>
-        <li>An MCP server with 54 tools (41 read-only) and 6 skills that tell the assistant when to use them</li>
+        <li>An MCP server with 54 tools and 6 skills</li>
         <li>Plugins for Claude Code and Codex; <code>garuda init</code> sets up Cursor and Claude Desktop</li>
         <li>A guard that runs before and after every edit</li>
         <li>Read-only mode, and a named human approver for tools that change state</li>
+        <li>Task handoff between assistants</li>
       </ul></div>
       <div class="grp"><h3>For your rules</h3><ul>
         <li>Ready-made rule sets: layered, hexagonal, microservices, no circular imports, financial, zero-trust auth, AI agent safety, PII and GDPR/HIPAA, idempotent mutations</li>
@@ -486,9 +730,9 @@ footer a:hover{color:var(--ink)}
         <li>A verdict comment, and findings in GitHub's Security tab</li>
         <li>Optional Slack or Teams alerts</li>
       </ul></div>
-      <div class="grp"><h3>For understanding impact</h3><ul>
-        <li>Who calls this code, and how far a change spreads</li>
-        <li>High, medium and low tiers, so heavily used code is protected from silent rewrites</li>
+      <div class="grp"><h3>Code graph and impact</h3><ul>
+        <li>A graph of your system: every function, type and import, and who calls what</li>
+        <li>How far a change spreads, and high, medium and low tiers for critical code</li>
         <li>A focused map of the neighbourhood you care about, not one tangled graph</li>
       </ul></div>
       <div class="grp"><h3>For evidence</h3><ul>
@@ -505,51 +749,27 @@ footer a:hover{color:var(--ink)}
   </div>
 </section>
 
-<!-- DASHBOARD -->
-<section id="dashboard" class="band">
+<!-- WHO -->
+<section id="who" class="who band">
   <div class="wrap">
-    <div class="head measure">
-      <h2>A dashboard that runs on localhost</h2>
-      <p class="lead">Ten views of your system, served from your machine at localhost:8080. These are screenshots of the real thing.</p>
+    <div class="grid-letters" id="letters" aria-hidden="true"></div>
+    <div>
+      <h2>Built for code where one mistake is expensive</h2>
+      <p class="lead" style="margin-top:16px">For teams that already use AI assistants a lot, on a real codebase with rules that matter.</p>
+      <ul class="domains">
+        <li><b>Payments and fintech</b><span>Money movement goes through the layer that guards it.</span></li>
+        <li><b>Ledgers and billing</b><span>Two teams computing the same number get the same answer.</span></li>
+        <li><b>Commerce</b><span>Checkout, pricing and inventory rules do not drift.</span></li>
+        <li><b>Health data</b><span>Data-access limits hold when an assistant edits the code.</span></li>
+        <li><b>Data platforms</b><span>The formulas behind reports stay the ones you agreed on.</span></li>
+        <li><b>Platform teams</b><span>One set of architecture rules across many repositories.</span></li>
+      </ul>
     </div>
-    <div class="viewer-tabs" role="tablist" aria-label="Dashboard views">
-      <button role="tab" aria-selected="true" data-shot="0">Overview</button>
-      <button role="tab" aria-selected="false" data-shot="1">Add a project</button>
-      <button role="tab" aria-selected="false" data-shot="2">Docs to rules</button>
-      <button role="tab" aria-selected="false" data-shot="3">Numbers that disagree</button>
-    </div>
-    <div class="frame">
-      <div class="frame-bar"><i></i><i></i><i></i><span>localhost:8080/dashboard</span></div>
-      <div class="stage">
-        <img class="on" src="img/about-garuda.jpg" alt="Garuda dashboard overview with the map of its surfaces">
-        <img src="img/create-workspace.jpg" alt="Creating a workspace by pasting a repository link" loading="lazy">
-        <img src="img/docs-to-guardrails.jpg" alt="Design documents turned into enforced rules" loading="lazy">
-        <img src="img/data-logic-audit.jpg" alt="Data and logic audit catching a 10x mismatch between two calculations" loading="lazy">
-      </div>
-    </div>
-    <p class="small viewer-cap" id="viewer-cap">The front page: every part of Garuda, one click away.</p>
-  </div>
-</section>
-
-<!-- MEASURED -->
-<section id="evidence">
-  <div class="wrap">
-    <div class="head measure">
-      <h2>Measured, with the method published</h2>
-      <p class="lead">Recorded on 27 October 2026 for the v1.9.9 line. Every number can be re-run on your own checkout.</p>
-    </div>
-    <table class="measured">
-      <tr><td>24/24</td><td>Ground-truth analyzer benchmarks passed, with the same result on repeated runs</td></tr>
-      <tr><td>63/63</td><td>Multi-repository checks of the MCP server and guard</td></tr>
-      <tr><td>14</td><td>Go repositories validated: 4,888 entities and 5,894 relationships</td></tr>
-      <tr><td>10/10</td><td>Injected runtime contradictions detected in a controlled test</td></tr>
-    </table>
-    <p class="small" style="margin-top:16px">Details and boundaries: <a href="https://github.com/myshra777-ai/garuda/blob/main/EVIDENCE.md">EVIDENCE.md</a>. A benchmark result is not a universal guarantee.</p>
   </div>
 </section>
 
 <!-- INSTALL -->
-<section id="install" class="band">
+<section id="install">
   <div class="wrap">
     <div class="head measure">
       <h2>Install in a few minutes</h2>
@@ -579,30 +799,57 @@ cd garuda
           <p>Runs the demo with no database. Needs Node 18 or newer.</p>
         </div>
         <div class="panel" data-p="ai" hidden>
-          <p>Paste one prompt into ChatGPT, Claude, Codex or Cursor and let it install Garuda for you.</p>
-          <a class="btn" href="https://github.com/myshra777-ai/garuda/blob/main/docs/INSTALL_WITH_AI.md">Get the prompt</a>
+          <p>Copy one prompt, paste it into ChatGPT, Claude, Claude Code, Cursor or Codex, and the assistant walks you through the official install.</p>
+          <button class="btn ink js-prompt" type="button">Copy setup prompt</button>
+          <p class="small" style="margin-top:12px">Check that any download link it gives you starts with https://github.com/myshra777-ai/garuda/.</p>
         </div>
-        <h3 style="margin:34px 0 12px">Then point it at your project</h3>
+      </div>
+      <div>
+        <h3 style="margin-bottom:12px">Then point it at your project</h3>
 <pre class="cmd"><button class="copy" type="button">Copy</button>garuda init . --wizard      <span class="dim"># five short questions</span>
 garuda rulebook generate    <span class="dim"># drafts rules from your code</span>
 garuda check . --diff HEAD  <span class="dim"># checks what you just changed</span></pre>
-      </div>
-      <div>
-        <h3 style="margin-bottom:6px">Connect your assistant</h3>
-        <table class="plug">
-          <tr><td>Claude Code</td><td><code>/plugin marketplace add myshra777-ai/garuda</code>, then <code>/plugin install garuda@garuda</code></td></tr>
-          <tr><td>OpenAI Codex</td><td><code>codex plugin marketplace add myshra777-ai/garuda</code></td></tr>
-          <tr><td>Cursor</td><td>Run <code>garuda init</code></td></tr>
-          <tr><td>Any MCP client</td><td>Run <code>garuda-mcp</code> over stdio</td></tr>
-        </table>
+        <p class="small"><code>garuda init</code> also connects Claude Code, Claude Desktop and Cursor for you.</p>
         <div class="tested">Tested end to end on Linux. The Windows scripts are checked automatically and were fixed on a real Windows 11 PC. macOS has no recorded run yet. <a href="https://github.com/myshra777-ai/garuda/blob/main/INSTALL.md#what-has-been-tested">What has been tested</a></div>
+      </div>
+    </div>
+
+    <div class="connect" id="connect">
+      <h3 class="serif-sub">Add Garuda to your assistant</h3>
+      <p class="small" style="margin-bottom:18px">Install Garuda first. The plugins and the MCP server use the <code>garuda-mcp</code> program and the local database that setup creates.</p>
+      <div class="crow">
+        <div class="cname">Claude Code<span>plugin with the six skills</span></div>
+        <div class="cact">
+<pre class="cmd"><button class="copy" type="button">Copy</button>/plugin marketplace add myshra777-ai/garuda
+/plugin install garuda@garuda</pre>
+        </div>
+      </div>
+      <div class="crow">
+        <div class="cname">OpenAI Codex<span>plugin</span></div>
+        <div class="cact">
+<pre class="cmd"><button class="copy" type="button">Copy</button>codex plugin marketplace add myshra777-ai/garuda</pre>
+        </div>
+      </div>
+      <div class="crow">
+        <div class="cname">Cursor<span>MCP server, one click</span></div>
+        <div class="cact">
+          <a class="btn ink" id="cursor-link" href="#connect">Add to Cursor</a>
+          <p class="small" style="margin-top:10px">Opens Cursor and asks you to confirm. Needs <code>garuda-mcp</code> on your PATH; if Cursor cannot find it, run <code>garuda init</code> in your project, which writes the full path.</p>
+        </div>
+      </div>
+      <div class="crow">
+        <div class="cname">VS Code and any MCP client<span>stdio config</span></div>
+        <div class="cact">
+<pre class="cmd" id="mcp-json"><button class="copy" type="button">Copy</button></pre>
+          <p class="small">The database address is the default that setup creates. Set <code>GARUDA_WORKSPACE</code> to your project's workspace name.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- LIMITS -->
-<section id="limits">
+<section id="limits" class="band">
   <div class="wrap">
     <div class="head measure">
       <h2>What Garuda does not do</h2>
@@ -617,41 +864,113 @@ garuda check . --diff HEAD  <span class="dim"># checks what you just changed</sp
   </div>
 </section>
 
-<!-- TEAMS -->
-<section id="teams" class="band">
+<!-- SERVICES -->
+<section id="services">
   <div class="wrap">
     <div class="head measure">
-      <h2>For teams</h2>
-      <p class="lead">For engineering teams that use AI assistants on code where one structural mistake is expensive.</p>
+      <h2>Work with us</h2>
+      <p class="lead">The software is free. When you want help putting it to work, we do it with you. Each engagement is quoted after a short call.</p>
     </div>
-    <div class="teams">
-      <div class="tcard">
-        <span class="tag now">AVAILABLE NOW</span>
-        <h3>A pilot on your repository</h3>
-        <p>We set Garuda up with you on one repository, write down the rules your team already follows, and go through the findings together. Your code stays on your machines. Early pilots are free while the offer is shaped with real teams.</p>
-        <a class="btn ink" href="mailto:myshra777@gmail.com?subject=Garuda%20pilot">Ask about a pilot</a>
+    <div class="svc">
+      <div class="srow">
+        <h3>Architecture audit</h3>
+        <p>We run Garuda read-only on one of your repositories and hand you a report: the rules your code already follows, where recent changes drift from them, and what to enforce first. Every finding names the rule it breaks.</p>
+        <button class="btn js-req" data-req="Architecture audit" type="button">Request an audit</button>
       </div>
-      <div class="tcard">
-        <span class="tag later">PLANNED</span>
-        <h3>Garuda for organisations</h3>
-        <p>Not available yet. What we are planning, shaped by the teams we work with:</p>
-        <ul>
-          <li>Shared rules across every repository and assistant</li>
-          <li>Approvals for exceptions, with a record of who decided</li>
-          <li>Single sign-on and long-term audit storage</li>
-        </ul>
-        <a class="btn" href="mailto:myshra777@gmail.com?subject=Garuda%20for%20organisations">Tell us what you need</a>
+      <div class="srow">
+        <h3>Pilot <span class="tag now">FREE FOR EARLY TEAMS</span></h3>
+        <p>Garuda set up with you on one repository for a few weeks, with your assistants and your pull requests. We go through the findings together. Your code stays on your machines.</p>
+        <button class="btn js-req" data-req="Pilot" type="button">Apply for a pilot</button>
+      </div>
+      <div class="srow">
+        <h3>Setup and rollout</h3>
+        <p>Install for your team, connect every assistant, turn on the pull request check and make it required, and draft your first rulebook.</p>
+        <button class="btn js-req" data-req="Setup and rollout" type="button">Request setup</button>
+      </div>
+      <div class="srow">
+        <h3>Custom rule packs</h3>
+        <p>Rules written for your domain and your codebase: payments and ledgers, health data, data pipelines, or your own architecture.</p>
+        <button class="btn js-req" data-req="Custom rule pack" type="button">Ask for rules</button>
+      </div>
+      <div class="srow">
+        <h3>Enterprise request <span class="tag later">PLANNED</span></h3>
+        <p>Shared rules across every repository and assistant, approvals for exceptions with a record of who decided, single sign-on, long-term audit storage. Not available yet. Tell us what you need and it shapes what we build first.</p>
+        <button class="btn js-req" data-req="Enterprise request" type="button">Send your requirements</button>
+      </div>
+      <div class="srow">
+        <h3>Something else</h3>
+        <p>A language you need, an integration, or a question about how Garuda fits your setup.</p>
+        <button class="btn js-req" data-req="Custom request" type="button">Make a custom request</button>
       </div>
     </div>
   </div>
 </section>
 
+<!-- GUIDES -->
+<section id="guides" class="band">
+  <div class="wrap">
+    <div class="head measure">
+      <h2>Guides</h2>
+      <p class="lead">Short reads, straight from the repository.</p>
+    </div>
+    <div class="guides">
+      <a class="guide" href="https://github.com/myshra777-ai/garuda/blob/main/docs/WHY_GARUDA.md"><b>Why Garuda</b><span>The business case in two minutes, for engineering leaders.</span><em>Read the case</em></a>
+      <a class="guide" href="https://github.com/myshra777-ai/garuda/blob/main/QUICKSTART.md"><b>Quickstart</b><span>From install to your first blocked change.</span><em>Start here</em></a>
+      <a class="guide" href="https://github.com/myshra777-ai/garuda/blob/main/docs/TALON.md"><b>How the check works</b><span>What happens before and after every edit.</span><em>Read the guide</em></a>
+      <a class="guide" href="https://github.com/myshra777-ai/garuda/blob/main/docs/DASHBOARD_WALKTHROUGH.md"><b>Dashboard tour</b><span>Every view in the dashboard, one page each.</span><em>Take the tour</em></a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap contact">
+    <div>
+      <h2>Talk to us</h2>
+      <p class="lead" style="margin:16px 0 28px">Book a call, ask a question, or send a request. You will hear back from the person who builds Garuda.</p>
+      <div class="mailbox">
+        <span class="small">Email</span>
+        <a href="mailto:rohit@getgaruda.in" class="mail">rohit@getgaruda.in</a>
+        <button class="btn sm" id="copy-mail" type="button">Copy address</button>
+      </div>
+      <a class="btn ink js-call" id="call-btn" href="mailto:rohit@getgaruda.in?subject=Book%20a%20call%20about%20Garuda" style="margin-top:22px">Book a call</a>
+      <p class="small" style="margin-top:12px">A 20 to 30 minute call. We can look at one of your repositories together.</p>
+    </div>
+    <form class="form" id="req-form" novalidate>
+      <label><span class="lbl">What do you need?</span>
+        <select name="type" id="req-type">
+          <option>Book a call</option>
+          <option>Architecture audit</option>
+          <option>Pilot</option>
+          <option>Setup and rollout</option>
+          <option>Custom rule pack</option>
+          <option>Enterprise request</option>
+          <option>Custom request</option>
+          <option>Question</option>
+        </select>
+      </label>
+      <div class="two">
+        <label><span class="lbl">Your name</span><input name="fullname" autocomplete="name" required></label>
+        <label><span class="lbl">Work email</span><input name="email" type="email" autocomplete="email"></label>
+      </div>
+      <label><span class="lbl">Company and team size <span class="opt">(optional)</span></span><input name="company" autocomplete="organization"></label>
+      <label><span class="lbl">Tell us about it</span><textarea name="msg" rows="5" required placeholder="Your stack, the assistants you use, what you want Garuda to catch, and good times for a call."></textarea></label>
+      <button class="btn ink" type="submit">Write the email</button>
+      <p class="small form-note" id="form-note" aria-live="polite">This opens your email app with everything filled in, addressed to rohit@getgaruda.in.</p>
+    </form>
+  </div>
+</section>
+
+<!-- CLOSING -->
 <div class="closing">
   <div class="wrap">
-    <h2>Let AI move fast. Keep control of what it changes.</h2>
-    <div class="ctas" style="display:flex;gap:12px;flex-wrap:wrap">
-      <a class="btn ink" href="#install">Install Garuda</a>
-      <a class="btn" href="https://github.com/myshra777-ai/garuda">Read the source</a>
+    <div>
+      <h2>Let AI move fast. Keep control of what it changes.</h2>
+      <p>Free, open source, and running on your machine in a few minutes.</p>
+    </div>
+    <div class="ctas">
+      <a class="btn lime" href="#install">Install Garuda</a>
+      <a class="btn js-call" href="#contact">Book a call</a>
     </div>
   </div>
 </div>
@@ -660,42 +979,108 @@ garuda check . --diff HEAD  <span class="dim"># checks what you just changed</sp
 
 <footer>
   <div class="wrap">
-    <a class="brand" href="#top"><img src="img/mark.png" alt="" width="26" height="18">Garuda</a>
-    <span>Built by Rohit Mishra in Bengaluru. Apache-2.0.</span>
-    <nav aria-label="Footer">
-      <a href="https://github.com/myshra777-ai/garuda">GitHub</a>
-      <a href="https://github.com/myshra777-ai/garuda/blob/main/SECURITY.md">Security</a>
-      <a href="https://github.com/myshra777-ai/garuda/blob/main/EVIDENCE.md">Evidence</a>
-      <a href="https://github.com/myshra777-ai/garuda/blob/main/LICENSE">License</a>
-    </nav>
+    <div class="foot">
+      <div class="about">
+        <a class="brand" href="#top"><img src="img/mark.png" alt="" width="26" height="18">Garuda</a>
+        <p>Change control for AI-written code.</p>
+      </div>
+      <div><h4>Product</h4><ul>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#privacy">Privacy</a></li>
+        <li><a href="#agents">Agents</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#install">Install</a></li>
+      </ul></div>
+      <div><h4>Services</h4><ul>
+        <li><a href="#services">Architecture audit</a></li>
+        <li><a href="#services">Pilot</a></li>
+        <li><a href="#services">Setup and rollout</a></li>
+        <li><a href="#services">Custom rule packs</a></li>
+        <li><a href="#services">Enterprise request</a></li>
+      </ul></div>
+      <div><h4>Resources</h4><ul>
+        <li><a href="https://github.com/myshra777-ai/garuda">GitHub</a></li>
+        <li><a href="https://github.com/myshra777-ai/garuda/blob/main/QUICKSTART.md">Quickstart</a></li>
+        <li><a href="https://github.com/myshra777-ai/garuda/blob/main/INSTALL.md">Install guide</a></li>
+        <li><a href="https://github.com/myshra777-ai/garuda/blob/main/SECURITY.md">Security</a></li>
+        <li><a href="https://github.com/myshra777-ai/garuda/blob/main/LICENSE">License</a></li>
+      </ul></div>
+      <div><h4>Contact</h4><ul>
+        <li><a href="mailto:rohit@getgaruda.in">rohit@getgaruda.in</a></li>
+        <li><a class="js-call" href="#contact">Book a call</a></li>
+        <li><a href="#contact">Send a request</a></li>
+      </ul></div>
+    </div>
+    <div class="base"><span>&copy; 2026 Garuda</span><span>Open source under Apache-2.0</span></div>
   </div>
 </footer>
+
+<textarea id="setup-prompt" hidden>Help me install Garuda, an open-source change-control tool for AI-written code.
+
+Use ONLY these official sources, in this order:
+1. https://github.com/myshra777-ai/garuda/blob/main/INSTALL.md
+2. The latest release: https://github.com/myshra777-ai/garuda/releases/latest
+3. The installers in that repository: install.sh (macOS, Linux, ChromeOS, Termux) and install.ps1 (Windows)
+
+Steps:
+1. Ask me which operating system and CPU I have, or detect them if you can run commands.
+2. Give me the install command for my system from INSTALL.md. If you can, also give a direct link to the right release file for my system and tell me to check it against SHA256SUMS.txt.
+3. If I only want to try it without a database, tell me: npx garuda-guard demo (needs Node 18 or newer).
+4. After installing, have me run "garuda --version" and the health check from INSTALL.md, and tell me what a good result looks like.
+
+Rules:
+- Do not invent download links or commands. If something is not in the official sources, say so.
+- Do not use unofficial builds or change Garuda's source code.
+- If you can run commands, show me each command and ask before running anything that needs administrator rights or changes system settings.
+- If you find a script that is piped into a shell, tell me I can read it first.</textarea>
 
 <script>
 (function(){
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- settings ----
+     CALL_URL: paste a Cal.com or Calendly booking link here and every
+     "Book a call" button goes there. Leave it empty to use email. */
+  var CALL_URL = '';
+  var MAIL = 'rohit@getgaruda.in';
+
+  function copyText(text, btn, label){
+    function ok(){ btn.textContent = 'Copied'; btn.classList.add('done'); setTimeout(function(){ btn.textContent = label; btn.classList.remove('done'); }, 1800); }
+    function fallback(){
+      var t = document.createElement('textarea'); t.value = text; t.setAttribute('readonly',''); t.style.position = 'fixed'; t.style.opacity = '0';
+      document.body.appendChild(t); t.select();
+      try { document.execCommand('copy'); ok(); } catch(e){}
+      document.body.removeChild(t);
+    }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(ok, fallback); }
+      else { fallback(); }
+    } catch(e){ fallback(); }
+  }
 
   /* nav border on scroll */
   var nav = document.getElementById('nav');
   function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 8); }
   window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
+  /* setup prompt */
+  var promptText = document.getElementById('setup-prompt').value;
+  var cp = document.getElementById('copy-prompt');
+  cp.addEventListener('click', function(){ copyText(promptText, cp, 'Copy setup prompt'); });
+  document.querySelectorAll('.js-prompt').forEach(function(b){ b.addEventListener('click', function(){ copyText(promptText, b, 'Copy setup prompt'); }); });
+
   /* hero sequence */
   var check = document.getElementById('check'), st = document.getElementById('status-text');
   var typed = document.getElementById('typed'), l5 = document.getElementById('l5');
-  var steps = ['s-block','s-fix','s-allow','s-seal'].map(function(id){return document.getElementById(id);});
+  var steps = ['s-block','s-fix','s-allow','s-seal'].map(function(id){ return document.getElementById(id); });
   var timers = [];
   function at(ms, fn){ timers.push(setTimeout(fn, ms)); }
   function setState(s, label){ check.setAttribute('data-state', s); st.textContent = label; }
-  function finalState(){
-    l5.className = 'del'; typed.style.width = 'auto';
-    steps.forEach(function(s){ s.classList.add('on'); }); setState('sealed','Allowed and sealed');
-  }
   function run(){
     timers.forEach(clearTimeout); timers = [];
     steps.forEach(function(s){ s.classList.remove('on'); });
     l5.className = ''; setState('idle','Waiting');
-    if (reduce){ finalState(); return; }
+    if (reduce){ l5.className = 'del'; steps.forEach(function(s){ s.classList.add('on'); }); setState('sealed','Allowed and sealed'); return; }
     var full = typed.textContent; typed.style.width = '0ch';
     at(500, function(){ l5.className = 'add'; });
     for (var i=1;i<=full.length;i++){ (function(i){ at(500 + i*45, function(){ typed.style.width = i + 'ch'; }); })(i); }
@@ -707,6 +1092,23 @@ garuda check . --diff HEAD  <span class="dim"># checks what you just changed</sp
   }
   document.getElementById('replay').addEventListener('click', run);
   run();
+
+  /* product window */
+  var caps = [
+    'The front page: every part of Garuda, one click away.',
+    'Paste a GitHub link or a folder path, and Garuda reads the code for you.',
+    'Design docs and decision records become rules linked to the code they talk about.',
+    'Two teams calculate the same metric differently. Garuda shows both formulas and asks a person to decide.'
+  ];
+  var shots = document.querySelectorAll('.stage img'), shotTabs = document.querySelectorAll('.win-side button'), cap = document.getElementById('win-cap');
+  shotTabs.forEach(function(b){
+    b.addEventListener('click', function(){
+      var n = +b.dataset.shot;
+      shotTabs.forEach(function(x){ x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
+      shots.forEach(function(img, i){ img.classList.toggle('on', i === n); });
+      cap.textContent = caps[n];
+    });
+  });
 
   /* terminal replay (recorded output) */
   var runs = {
@@ -768,7 +1170,7 @@ garuda check . --diff HEAD  <span class="dim"># checks what you just changed</sp
     }
   };
   var out = document.getElementById('term-out'), note = document.getElementById('term-note');
-  var termTimers = [], current = 'demo', played = {};
+  var termTimers = [], current = 'demo', played = false;
   function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
   function show(name, animate){
     termTimers.forEach(clearTimeout); termTimers = [];
@@ -782,34 +1184,61 @@ garuda check . --diff HEAD  <span class="dim"># checks what you just changed</sp
   termTabs.forEach(function(b){
     b.addEventListener('click', function(){
       termTabs.forEach(function(x){ x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
-      show(b.dataset.run, true);
+      played = true; show(b.dataset.run, true);
     });
   });
-  show('demo', false);
-  out.querySelectorAll('.ln').forEach(function(s){ s.classList.remove('on'); });
   if ('IntersectionObserver' in window && !reduce){
+    show('demo', false); out.querySelectorAll('.ln').forEach(function(s){ s.classList.remove('on'); });
     var io = new IntersectionObserver(function(es){
-      es.forEach(function(e){ if (e.isIntersecting && !played[current]){ played[current] = true; show(current, true); io.disconnect(); } });
-    }, {threshold:.35});
+      es.forEach(function(e){ if (e.isIntersecting && !played){ played = true; show(current, true); io.disconnect(); } });
+    }, {threshold:.3});
     io.observe(document.getElementById('term'));
   } else { show('demo', false); }
 
-  /* dashboard viewer */
-  var caps = [
-    'The front page: every part of Garuda, one click away.',
-    'Paste a GitHub link or a folder path, and Garuda reads the code for you.',
-    'Design docs and decision records become rules linked to the code they talk about.',
-    'Two teams calculate the same metric differently. Garuda shows both formulas and asks a person to decide.'
-  ];
-  var shots = document.querySelectorAll('.stage img'), shotTabs = document.querySelectorAll('.viewer-tabs button'), cap = document.getElementById('viewer-cap');
-  shotTabs.forEach(function(b){
-    b.addEventListener('click', function(){
-      var n = +b.dataset.shot;
-      shotTabs.forEach(function(x){ x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
-      shots.forEach(function(img, i){ img.classList.toggle('on', i === n); });
-      cap.textContent = caps[n];
-    });
+  /* handoff animation, once */
+  var ho = document.getElementById('handoff');
+  if ('IntersectionObserver' in window && !reduce){
+    var hio = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ ho.classList.add('play'); hio.disconnect(); } }); }, {threshold:.6});
+    hio.observe(ho);
+  }
+
+  /* letter grid: Garuda's signals hidden in noise, lit one at a time while visible */
+  var words = ['ALLOW','BLOCK','REVIEW','SEALED','WARN','SUPPORTED','EVIDENCE'];
+  var grid = document.getElementById('letters');
+  var COLS = 15, ROWS = 11, ABC = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var seed = 7; function rnd(){ seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  var rows = [], placed = [];
+  for (var r=0;r<ROWS;r++){ var row=[]; for (var c=0;c<COLS;c++){ row.push(ABC[Math.floor(rnd()*26)]); } rows.push(row); }
+  var usedRows = [1,2,4,5,7,8,10];
+  words.forEach(function(w, k){
+    var r = usedRows[k], c = Math.floor(rnd()*(COLS - w.length + 1));
+    for (var i=0;i<w.length;i++){ rows[r][c+i] = w[i]; }
+    placed.push({r:r, c:c, len:w.length});
   });
+  var html = '';
+  for (var r2=0;r2<ROWS;r2++){
+    var line = '', c2 = 0;
+    while (c2 < COLS){
+      var hit = placed.filter(function(p){ return p.r === r2 && p.c === c2; })[0];
+      if (hit){ line += '<span class="w" data-w="' + placed.indexOf(hit) + '">' + rows[r2].slice(c2, c2+hit.len).join('') + '</span>'; c2 += hit.len; }
+      else { line += rows[r2][c2]; c2++; }
+    }
+    html += line + (r2 < ROWS-1 ? '\n' : '');
+  }
+  grid.innerHTML = html;
+  var wspans = grid.querySelectorAll('.w');
+  if (reduce){ wspans.forEach(function(s){ s.classList.add('lit'); }); }
+  else if ('IntersectionObserver' in window){
+    var wi = 0, wtimer = null;
+    function tick(){ wspans.forEach(function(s){ s.classList.remove('lit'); }); wspans[wi % wspans.length].classList.add('lit'); wi++; }
+    var gio = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (e.isIntersecting && !wtimer){ tick(); wtimer = setInterval(tick, 1700); }
+        if (!e.isIntersecting && wtimer){ clearInterval(wtimer); wtimer = null; }
+      });
+    }, {threshold:.4});
+    gio.observe(grid);
+  }
 
   /* install tabs */
   var pTabs = document.querySelectorAll('.tabs button'), panels = document.querySelectorAll('.panel');
@@ -821,18 +1250,47 @@ garuda check . --diff HEAD  <span class="dim"># checks what you just changed</sp
   });
   if (/Win/i.test(navigator.platform || '')){ var w = document.querySelector('.tabs button[data-p="win"]'); if (w) w.click(); }
 
-  /* copy buttons */
+  /* MCP config + Add to Cursor */
+  var serverCfg = { command: 'garuda-mcp', env: { DATABASE_URL: 'postgres://test:test@127.0.0.1:5433/garuda_test?sslmode=disable', GARUDA_WORKSPACE: 'default', GARUDA_TALON_ENFORCE: 'true' } };
+  document.getElementById('cursor-link').href = 'cursor://anysphere.cursor-deeplink/mcp/install?name=garuda&config=' + encodeURIComponent(btoa(JSON.stringify(serverCfg)));
+  document.getElementById('mcp-json').appendChild(document.createTextNode(JSON.stringify({ mcpServers: { garuda: Object.assign({ type: 'stdio' }, serverCfg) } }, null, 2)));
+
+  /* code-block copy buttons */
   document.querySelectorAll('.copy').forEach(function(btn){
     btn.addEventListener('click', function(){
       var pre = btn.parentNode.cloneNode(true);
       pre.querySelectorAll('.copy, .dim').forEach(function(n){ n.remove(); });
-      var text = pre.textContent.replace(/[ \t]+$/gm,'').trim();
-      function done(){ btn.textContent = 'Copied'; btn.classList.add('done'); setTimeout(function(){ btn.textContent = 'Copy'; btn.classList.remove('done'); }, 1600); }
-      try {
-        if (navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done, function(){}); }
-      } catch(e){}
+      copyText(pre.textContent.replace(/[ \t]+$/gm,'').trim(), btn, 'Copy');
     });
   });
+
+  /* booking + requests */
+  var form = document.getElementById('req-form'), typeSel = document.getElementById('req-type'), fnote = document.getElementById('form-note');
+  function pick(t){
+    for (var i=0;i<typeSel.options.length;i++){ if (typeSel.options[i].text === t){ typeSel.selectedIndex = i; } }
+    document.getElementById('contact').scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
+    if (!reduce){ form.classList.remove('flash'); void form.offsetWidth; form.classList.add('flash'); }
+    setTimeout(function(){ try { form.elements.fullname.focus({preventScroll:true}); } catch(e){} }, reduce ? 0 : 650);
+  }
+  document.querySelectorAll('.js-req').forEach(function(b){ b.addEventListener('click', function(){ pick(b.dataset.req); }); });
+  document.querySelectorAll('.js-call').forEach(function(a){
+    if (CALL_URL){ a.href = CALL_URL; a.target = '_blank'; a.rel = 'noopener'; return; }
+    if (a.id === 'call-btn') return;
+    a.addEventListener('click', function(e){ e.preventDefault(); pick('Book a call'); });
+  });
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var f = form.elements, name = f.fullname.value.trim(), msg = f.msg.value.trim();
+    if (!name || !msg){ fnote.textContent = 'Add your name and a few lines about what you need.'; fnote.className = 'small form-note err'; (name ? f.msg : f.fullname).focus(); return; }
+    var type = typeSel.value, company = f.company.value.trim(), email = f.email.value.trim();
+    var subject = 'Garuda: ' + type + (company ? ' (' + company + ')' : '');
+    var body = msg + '\n\n--\n' + name + (email ? '\n' + email : '') + (company ? '\n' + company : '') + '\nRequest: ' + type;
+    window.location.href = 'mailto:' + MAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    fnote.textContent = 'Your email app should open with the message ready. If nothing opened, write to ' + MAIL + '.';
+    fnote.className = 'small form-note ok';
+  });
+  var cm = document.getElementById('copy-mail');
+  cm.addEventListener('click', function(){ copyText(MAIL, cm, 'Copy address'); });
 })();
 </script>
 </body>
