@@ -4,7 +4,7 @@
     rm -rf img index.html DEPLOY.md
     unzip -o ~/Downloads/getgaruda-site-v3.zip
     git add -A
-    git commit -m "Website v3.1: contact aliases, demo video"
+    git commit -m "Website v3.2: skill examples"
     git push
 
 GitHub Pages republishes in 1 to 3 minutes. Hard-refresh (Ctrl+Shift+R).

@@ -221,6 +221,7 @@ section{padding:112px 0}
 .skills div{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:14px;padding:12px 0;border-top:1px solid var(--line)}
 .skills dt{font:600 13px/1.6 var(--mono)}
 .skills dd{margin:0;color:var(--text-2);font-size:15.5px}
+.skills dd .ex{display:block;margin-top:4px;font:400 12.5px/1.55 var(--mono);color:var(--muted)}
 .asks{width:100%;border-collapse:collapse;font-size:15.5px}
 .asks td{padding:12px 0;border-top:1px solid var(--line);vertical-align:top;color:var(--text-2)}
 .asks td:last-child{text-align:right;padding-left:14px}
@@ -686,12 +687,12 @@ footer{padding:64px 0 40px;font-size:14.5px;color:var(--muted)}
         <h3 class="serif-sub">Six skills your assistant can add</h3>
         <p class="small" style="margin-bottom:14px">Short playbooks that tell the assistant when to call Garuda. They come with the Claude Code plugin, and the files are in the repository for any other assistant.</p>
         <dl class="skills">
-          <div><dt>pre-edit-governance</dt><dd>Before changing code: proceed, revise, or ask a human?</dd></div>
-          <div><dt>change-impact</dt><dd>Who calls this, and how far does the damage spread?</dd></div>
-          <div><dt>post-edit-verification</dt><dd>After the edit: any new violations in this diff?</dd></div>
-          <div><dt>violation-repair</dt><dd>A change was blocked. Fix it without breaking something else.</dd></div>
-          <div><dt>architecture-review</dt><dd>Does the real code match the documented design?</dd></div>
-          <div><dt>evidence-verification</dt><dd>Is this claim backed by code, and is the receipt genuine?</dd></div>
+          <div><dt>pre-edit-governance</dt><dd>Before changing code: proceed, revise, or ask a human?<span class="ex">Try: &ldquo;Is it safe to change ChargeCustomer?&rdquo;</span></dd></div>
+          <div><dt>change-impact</dt><dd>Who calls this, and how far does the damage spread?<span class="ex">Try: &ldquo;What breaks if I change ChargeCustomer?&rdquo;</span></dd></div>
+          <div><dt>post-edit-verification</dt><dd>After the edit: any new violations in this diff?<span class="ex">Try: &ldquo;Check my changes before I open the pull request.&rdquo;</span></dd></div>
+          <div><dt>violation-repair</dt><dd>A change was blocked. Fix it without breaking something else.<span class="ex">Try: &ldquo;Garuda blocked my change. Help me fix it.&rdquo;</span></dd></div>
+          <div><dt>architecture-review</dt><dd>Does the real code match the documented design?<span class="ex">Try: &ldquo;Does our code follow our written design decisions?&rdquo;</span></dd></div>
+          <div><dt>evidence-verification</dt><dd>Is this claim backed by code, and is the receipt genuine?<span class="ex">Try: &ldquo;Prove that handlers never call the database directly.&rdquo;</span></dd></div>
         </dl>
         <a class="textlink" href="https://github.com/myshra777-ai/garuda/tree/main/skills">Browse the skill files</a>
       </div>
