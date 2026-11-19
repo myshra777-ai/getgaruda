@@ -4,7 +4,7 @@
     rm -rf img index.html DEPLOY.md
     unzip -o ~/Downloads/getgaruda-site-v3.zip
     git add -A
-    git commit -m "Website v3: contact, services, direct installs, agents, guides"
+    git commit -m "Website v3.1: contact aliases, demo video"
     git push
 
 GitHub Pages republishes in 1 to 3 minutes. Hard-refresh (Ctrl+Shift+R).
@@ -13,7 +13,7 @@ GitHub Pages republishes in 1 to 3 minutes. Hard-refresh (Ctrl+Shift+R).
 Booking: create a free Cal.com or Calendly link, then in index.html find
     var CALL_URL = '';
 and paste the link between the quotes. Every "Book a call" button will open it.
-Until then, "Book a call" opens the request form and email to rohit@getgaruda.in.
+Until then, "Book a call" opens the request form and email to contact@getgaruda.in.
 
 ## When getgaruda.in is active (after the .IN KYC)
 GoDaddy DNS: delete "A @ Parked"; add four A records for @ pointing to GitHub Pages
