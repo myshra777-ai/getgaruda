@@ -1,21 +1,25 @@
-# Deploy getgaruda.in (GitHub Pages)
+# Updating the getgaruda site
 
-1. On GitHub create a new PUBLIC repo `myshra777-ai/getgaruda` (empty).
-2. Put these files at the repo root (index.html, img/, .nojekyll) and push:
-   git init && git add . && git commit -m "Add Garuda website" && git branch -M main
-   git remote add origin https://github.com/myshra777-ai/getgaruda.git && git push -u origin main
-3. Repo Settings > Pages > Source: "Deploy from a branch", branch main, folder / (root). Save.
-   Site goes live at https://myshra777-ai.github.io/getgaruda/ within a few minutes.
+This folder replaces the first version in the getgaruda repo.
 
-## After GoDaddy activates the domain (KYC approved)
-In GoDaddy DNS:
-- Delete the "A  @  Parked" record.
-- Add 4 A records, name @ : 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153
-- Edit the CNAME "www" so it points to myshra777-ai.github.io (not getgaruda.in.)
-- Do NOT touch the mail records (MX, SPF, DKIM, SRV, DMARC).
-Then in GitHub Pages settings set Custom domain = getgaruda.in, wait for the DNS check, tick "Enforce HTTPS".
-(Verify the four IPs on GitHub's current Pages docs before pasting.)
+    cd ~/getgaruda
+    rm -rf img index.html DEPLOY.md
+    unzip -o ~/Downloads/getgaruda-site-v2.zip
+    git add -A
+    git commit -m "Website v2: dashboard styling, privacy, real output, install tabs"
+    git push
+
+GitHub Pages republishes in 1 to 3 minutes. Hard-refresh (Ctrl+Shift+R) to see it.
 
 ## Before you share it
-- The "Ask about a pilot" button uses myshra777@gmail.com. Change it to rohit@getgaruda.in once that mailbox works (search index.html for mailto).
-- Keep the page honest: add a feature or claim only after it ships.
+- "Ask about a pilot" and "Tell us what you need" use myshra777@gmail.com.
+  Search index.html for "mailto:" and change both to rohit@getgaruda.in once that mailbox works.
+- The "guard on a real commit" tab shows your own Talon run from 19 Nov 2026 on Garuda's repo.
+- Fonts load from Google Fonts. Everything else is in this folder.
+- Add a claim only after the feature ships.
+
+## When getgaruda.in is active (after the .IN KYC)
+In GoDaddy DNS: delete "A @ Parked"; add A records for @ pointing to GitHub Pages
+(185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153; check GitHub's
+Pages docs first); point CNAME "www" to myshra777-ai.github.io. Leave mail records alone.
+Then in repo Settings > Pages set Custom domain = getgaruda.in and tick Enforce HTTPS.
