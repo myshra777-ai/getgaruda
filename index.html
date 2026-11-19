@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Garuda: change control for AI-written code</title>
+<meta name="description" content="Garuda checks what your AI coding assistant changes against your system's rules, before and after every edit, and keeps a tamper-evident record. Open source, Apache-2.0.">
+<link rel="icon" href="img/favicon.png">
+<meta property="og:title" content="Garuda: change control for AI-written code">
+<meta property="og:description" content="Know the impact. Enforce the rules. Keep the evidence. Open source, Apache-2.0.">
+<meta property="og:image" content="img/about-garuda.jpg">
+<style>
+:root{--bg:#0b0f14;--panel:#121923;--line:#223042;--text:#e6edf3;--muted:#9fb0c3;--accent:#34d399;--warn:#f59e0b;--bad:#f87171;--link:#7dd3fc}
+@media (prefers-color-scheme:light){:root{--bg:#fbfcfd;--panel:#f1f5f9;--line:#d8e0ea;--text:#0f1720;--muted:#52627a;--accent:#047857;--warn:#b45309;--bad:#b91c1c;--link:#0369a1}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--link)}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;gap:20px;padding:14px 0;flex-wrap:wrap}
+nav .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--text);text-decoration:none}
+nav .brand img{width:30px;height:30px;border-radius:6px}
+nav .sp{flex:1}
+nav a.l{color:var(--muted);text-decoration:none;font-size:15px}
+nav a.l:hover{color:var(--text)}
+.btn{display:inline-block;padding:10px 18px;border-radius:8px;border:1px solid var(--line);color:var(--text);text-decoration:none;font-weight:600;font-size:15px}
+.btn.p{background:var(--accent);border-color:var(--accent);color:#04130d}
+.hero{padding:72px 0 40px}
+h1{font-size:clamp(34px,6vw,54px);line-height:1.1;margin:0 0 18px;letter-spacing:-.02em}
+.hero p.lead{font-size:20px;color:var(--muted);max-width:680px;margin:0 0 28px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px}
+.pills span{font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 11px}
+section{padding:44px 0;border-top:1px solid var(--line)}
+h2{font-size:28px;margin:0 0 8px;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:0 0 26px;max-width:680px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px}
+.card h3{margin:0 0 6px;font-size:18px}
+.card p{margin:0;color:var(--muted);font-size:15.5px}
+.card .n{color:var(--accent);font-weight:700;font-size:13px;letter-spacing:.08em}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;overflow:auto;font:14px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;margin:12px 0}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em}
+.flow{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.flow li{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 16px;display:flex;gap:12px;align-items:baseline}
+.flow b.t{min-width:64px;font:700 12px/1.9 ui-monospace,Menlo,monospace;letter-spacing:.06em}
+.t.block{color:var(--bad)}.t.allow{color:var(--accent)}.t.ask{color:var(--warn)}.t.save{color:var(--link)}
+figure{margin:0}
+figure img{width:100%;height:auto;border-radius:12px;border:1px solid var(--line);display:block}
+figcaption{color:var(--muted);font-size:14px;margin-top:8px}
+.two{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+ul.plain{margin:0;padding-left:20px;color:var(--muted)}
+ul.plain li{margin:6px 0}
+ul.plain b{color:var(--text)}
+.note{border-left:3px solid var(--warn);padding:2px 0 2px 14px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:28px 0 48px;color:var(--muted);font-size:14.5px}
+footer .row{display:flex;gap:18px;flex-wrap:wrap}
+@media (max-width:560px){.hero{padding-top:44px}nav .sp{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav>
+  <a class="brand" href="#"><img src="img/logo.png" alt="">Garuda</a>
+  <span class="sp"></span>
+  <a class="l" href="#how">How it works</a>
+  <a class="l" href="#try">Try it</a>
+  <a class="l" href="#limits">Limits</a>
+  <a class="l" href="#teams">For teams</a>
+  <a class="btn" href="https://github.com/myshra777-ai/garuda">GitHub</a>
+</nav></div></header>
+
+<main>
+<div class="wrap hero">
+  <h1>AI can write the code.<br>Garuda makes sure the change respects your system.</h1>
+  <p class="lead">Change control for AI-written code. Garuda sits between your AI coding assistant and your codebase: it tells the assistant what depends on the code before an edit, checks the change against your rules after it, and keeps a tamper-evident record of what was checked.</p>
+  <div class="cta">
+    <a class="btn p" href="#try">Try it in about 10 minutes</a>
+    <a class="btn" href="https://github.com/myshra777-ai/garuda">View the source</a>
+  </div>
+  <div class="pills"><span>Open source &middot; Apache-2.0</span><span>Runs on your machine</span><span>Go, Python, TypeScript &middot; Java (Beta)</span><span>MCP server</span></div>
+</div>
+
+<section id="how"><div class="wrap">
+  <h2>Know the impact. Enforce the rules. Keep the evidence.</h2>
+  <p class="sub">Your assistant is good at writing code. It does not automatically know every decision your team made, every part of the system that depends on the code, or every rule that has to stay true.</p>
+  <div class="grid">
+    <div class="card"><div class="n">BEFORE</div><h3>Know the impact</h3><p>Before an edit, Garuda tells the assistant who depends on that code and which rules apply.</p></div>
+    <div class="card"><div class="n">AFTER</div><h3>Enforce the rules</h3><p>After the edit, the change is checked and gets a verdict: allow, warn, review or block, with plain instructions for fixing it.</p></div>
+    <div class="card"><div class="n">ALWAYS</div><h3>Keep the evidence</h3><p>Saved decisions are sealed into a tamper-evident log, so you can show later what was checked and when.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>One change, start to finish</h2>
+  <p class="sub">An assistant is asked to add a feature to the payment handler.</p>
+  <ol class="flow">
+    <li><b class="t ask">ASK</b><span>Garuda replies: "12 other things depend on this. It is high-risk code. Rule: the payment handler must not talk to the database directly."</span></li>
+    <li><b class="t block">BLOCK</b><span>In a hurry, the assistant calls the database straight from the handler. Garuda sees the broken rule and tells it exactly what to move and where.</span></li>
+    <li><b class="t allow">ALLOW</b><span>The assistant fixes it, and the second check passes.</span></li>
+    <li><b class="t save">SAVE</b><span>The result is saved as a receipt you can look up later.</span></li>
+  </ol>
+  <p class="sub" style="margin-top:18px">Garuda also separates problems this change introduced from problems that were already there, so you answer only for what is new.</p>
+</div></section>
+
+<section><div class="wrap">
+  <figure><img src="img/about-garuda.jpg" alt="The Garuda dashboard: a map of your system, with the guard switched on" loading="lazy"><figcaption>The local dashboard: a map of your system, with the guard switched on.</figcaption></figure>
+</div></section>
+
+<section id="try"><div class="wrap">
+  <h2>Try it</h2>
+  <p class="sub">Garuda runs locally. Your code does not leave your machine.</p>
+  <div class="two">
+    <div>
+      <h3 style="margin:0 0 4px">Install</h3>
+<pre>git clone https://github.com/myshra777-ai/garuda.git
+cd garuda
+./setup.sh</pre>
+      <p class="sub" style="margin:0">Starts a local database, builds the tools and opens the dashboard. On Windows use <code>setup.ps1</code>. The <a href="https://github.com/myshra777-ai/garuda/blob/main/INSTALL.md">install guide</a> has the other options.</p>
+    </div>
+    <div>
+      <h3 style="margin:0 0 4px">Watch it catch three planted bugs</h3>
+<pre>./bin/garuda demo</pre>
+      <p class="sub" style="margin:0">Builds a tiny fake payments service with three problems planted on purpose and lists them with file, line and a fix. The problems are made up, and the demo lists them rather than detecting them. Real detection runs on your own code with <code>garuda check</code>.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="limits"><div class="wrap">
+  <h2>What Garuda does not do</h2>
+  <p class="sub">We would rather you trust the rest of this page.</p>
+  <ul class="plain">
+    <li><b>It is not a cage.</b> An assistant can ignore advice and hooks can be switched off. The check that cannot be skipped is the required pull request check.</li>
+    <li><b>Go is read with the compiler's type checker.</b> Python, TypeScript and Java (Beta) are high-precision analyzers with documented limits; dynamic runtime behaviour is outside static analysis.</li>
+    <li><b>Not every check is stored automatically.</b> The log proves a saved record was not changed afterwards. It does not prove the analysis was complete.</li>
+    <li><b>The number-mismatch tools help a human decide.</b> They do not understand every financial calculation by themselves.</li>
+  </ul>
+</div></section>
+
+<section id="teams"><div class="wrap">
+  <h2>For teams</h2>
+  <p class="sub">The engine is free and stays open source. Teams that use AI coding assistants on code where one structural mistake is expensive (payments, billing, ledgers, commerce, health data) can ask for a pilot.</p>
+  <div class="grid">
+    <div class="card"><h3>Pilot</h3><p>We run Garuda read-only on one repository, write down the rules your team already follows, and show you what it would have caught in your recent history. Early pilots are free while the offer is shaped with real teams.</p></div>
+    <div class="card"><h3>Shared rules and approvals</h3><p><b style="color:var(--warn)">Planned, not available yet.</b> One place to publish rules, approve exceptions and see evidence across repositories. Tell us if this is what you need.</p></div>
+  </div>
+  <p style="margin-top:22px"><a class="btn p" href="mailto:myshra777@gmail.com?subject=Garuda%20pilot">Ask about a pilot</a> &nbsp; <a class="btn" href="https://github.com/myshra777-ai/garuda/issues">Open an issue</a></p>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="row">
+    <span>Garuda is open source under <a href="https://github.com/myshra777-ai/garuda/blob/main/LICENSE">Apache-2.0</a>.</span>
+    <a href="https://github.com/myshra777-ai/garuda">GitHub</a>
+    <a href="https://github.com/myshra777-ai/garuda/blob/main/SECURITY.md">Security policy</a>
+    <a href="https://github.com/myshra777-ai/garuda/blob/main/EVIDENCE.md">Evidence</a>
+  </div>
+  <p>Built by Rohit Mishra in Bengaluru.</p>
+</div></footer>
+</body>
+</html>
