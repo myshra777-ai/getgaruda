@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Garuda: change control for AI-written code</title>
-<meta name="description" content="Garuda checks every change your AI coding assistant makes against your system's rules, before and after the edit, and keeps a tamper-evident record. It runs on your machine. Free and open source.">
+<title>Garuda</title>
+<meta name="description" content="Know what a change affects before you merge it. Garuda checks every AI-written change against your system and your team's rules, runs on your machine and keeps proof of what was checked. Free and open source.">
 <meta name="theme-color" content="#F7F7F3">
 <link rel="icon" href="img/favicon.png">
 <script>document.documentElement.classList.add('js')</script>
-<meta property="og:title" content="Garuda: change control for AI-written code">
-<meta property="og:description" content="Know the impact. Enforce the rules. Keep the evidence. Runs on your machine.">
+<meta property="og:title" content="Garuda: know what a change affects before you merge it">
+<meta property="og:description" content="Checks every AI-written change against your own rules, before and after the edit. Runs on your machine. Free and open source.">
 <meta property="og:image" content="img/og.png">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -377,42 +377,87 @@ footer{padding:64px 0 40px;font-size:14.5px;color:var(--muted)}
   *,*::before,*::after{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
 }
+/* v4 additions */
+.hero h1{max-width:12em}
+.trust{margin-top:18px;font-size:14.5px;color:var(--muted)}
+.pains{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 40px;margin-top:8px}
+.pains div{padding:22px 0;border-top:1px solid var(--line-2)}
+.pains h3{margin-bottom:6px}
+.pains p{color:var(--text-2);font-size:16px}
+.steps3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;list-style:none;margin:0;padding:0;counter-reset:s}
+.steps3 li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px;counter-increment:s}
+.steps3 li::before{content:counter(s);display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--paper);font:600 14px var(--sans);margin-bottom:14px}
+.steps3 h3{margin-bottom:6px}
+.steps3 p{color:var(--text-2);font-size:16px}
+.steps3 .eg{margin-top:14px;font:400 12.5px/1.55 var(--mono);color:var(--muted);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:10px 12px;white-space:pre-wrap}
+.cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.cmp{width:100%;min-width:760px;border-collapse:collapse;font-size:15px}
+.cmp th,.cmp td{padding:14px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.cmp thead th{font:600 14px var(--sans);color:var(--text-2);background:var(--paper)}
+.cmp tbody th{font-weight:500;color:var(--ink);width:24%}
+.cmp td{color:var(--text-2)}
+.cmp tr:last-child th,.cmp tr:last-child td{border-bottom:0}
+.cmp .g{background:var(--lime-soft);color:var(--lime-ink);font-weight:500}
+.cmp thead .g{background:var(--lime);color:var(--ink)}
+.cmp-note{margin-top:12px}
+.facts4{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 32px;list-style:none;margin:28px 0 0;padding:0}
+.facts4 li{padding:16px 0;border-top:1px solid var(--line-2)}
+.facts4 h3{margin-bottom:4px;font-size:16.5px}
+.facts4 p{color:var(--text-2);font-size:15.5px}
+.faq{max-width:820px}
+.faq details{border-top:1px solid var(--line-2)}
+.faq details:last-child{border-bottom:1px solid var(--line-2)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;padding:20px 0;font:600 17.5px/1.4 var(--sans)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:400 24px/1 var(--sans);color:var(--muted);transition:transform .2s var(--ease)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq .a{padding:0 0 22px;color:var(--text-2);max-width:68ch}
+.faq .a p+p{margin-top:10px}
+.faq .a code{background:var(--paper-2);padding:1px 5px;border-radius:4px}
+.more-assist{margin-top:20px}
+.more-assist summary{cursor:pointer;font:500 15px var(--sans);color:var(--text-2)}
+.reach{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:28px}
+.reach .mail{font:400 22px/1.2 var(--serif);color:var(--paper)}
+.closing .small{color:#9EA39A}
+@media (max-width:980px){
+  .pains,.steps3{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:560px){
+  .facts4{grid-template-columns:minmax(0,1fr)}
+  .faq summary{font-size:16.5px}
+}
 </style>
 </head>
 <body>
-
 <header class="nav" id="nav">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="Garuda home"><img src="img/mark.png" alt="" width="30" height="21">Garuda</a>
     <nav class="nav-links" aria-label="Sections">
       <a href="#how">How it works</a>
+      <a href="#why">Why Garuda</a>
       <a href="#privacy">Privacy</a>
-      <a href="#agents">Agents</a>
-      <a href="#install">Install</a>
-      <a href="#services">Services</a>
-      <a href="#guides">Guides</a>
+      <a href="#start">Get started</a>
+      <a href="#faq">FAQ</a>
     </nav>
     <a class="btn sm gh" href="https://github.com/myshra777-ai/garuda" aria-label="Garuda on GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span class="gh-label">GitHub</span></a>
-    <a class="btn sm ink js-call" href="#contact">Book a call</a>
+    <a class="btn sm ink js-call" href="#talk">Book a demo</a>
   </div>
 </header>
 
 <main id="top">
 
-<!-- HERO -->
 <div class="hero">
   <div class="wrap">
     <div>
-      <h1>AI can write the code. Garuda makes sure the change respects your system.</h1>
-      <p class="lead">Before your coding assistant edits, Garuda tells it what depends on that code and which rules apply. After the edit, it checks the change and says allow, warn, review or block. Every saved decision goes into a tamper-evident record. All of it runs on your machine.</p>
+      <h1>Know what a change affects before you merge it.</h1>
+      <p class="lead">Garuda checks every change your AI coding assistant makes against your system and your team's rules, before and after the edit. It runs on your machine, and it keeps proof of what was checked.</p>
       <div class="ctas">
-        <a class="btn ink" href="#install">Install Garuda</a>
-        <button class="btn" id="copy-prompt" type="button">Copy setup prompt</button>
+        <a class="btn ink js-call" href="#talk">Book a demo</a>
+        <a class="btn" href="#start">Try it free</a>
       </div>
-      <p class="prompt-note">Paste the prompt into your assistant and it installs Garuda for you, using only the official instructions.</p>
-      <div class="tools" aria-label="Works with"><span>ChatGPT</span><span>Claude</span><span>Claude Code</span><span>Cursor</span><span>Codex</span></div>
+      <p class="trust">Free and open source. Works with</p>
+      <div class="tools" aria-label="Works with"><span>Claude Code</span><span>Cursor</span><span>Codex</span><span>Any MCP client</span></div>
     </div>
-
     <div>
       <div class="check" id="check" data-state="idle" aria-label="Illustration: an assistant edit is blocked, repaired and allowed">
         <div class="check-bar">
@@ -456,142 +501,69 @@ footer{padding:64px 0 40px;font-size:14.5px;color:var(--muted)}
   </div>
 </div>
 
-<!-- PRODUCT -->
-<section id="product" class="band">
+<section id="problem" class="band">
   <div class="wrap">
     <div class="head measure">
-      <h2>Your whole system, on localhost</h2>
-      <p class="lead">A dashboard with ten views, served from your own machine. Pick a view to see the real screen.</p>
+      <h2>AI writes code faster than anyone can check it.</h2>
     </div>
-    <div class="window">
-      <div class="win-side" role="tablist" aria-label="Dashboard views">
-        <div class="ws"><img src="img/mark.png" alt="">your-workspace</div>
-        <button role="tab" aria-selected="true" data-shot="0"><i>00</i>Overview</button>
-        <button role="tab" aria-selected="false" data-shot="1"><i>+</i>Add a project</button>
-        <button role="tab" aria-selected="false" data-shot="2"><i>04</i>Docs to rules</button>
-        <button role="tab" aria-selected="false" data-shot="3"><i>09</i>Data and logic audit</button>
-        <div class="rest">Also: architecture map, risk hub, change review, evidence ledger, agents and sessions, decision history.</div>
-      </div>
-      <div class="win-main">
-        <div class="win-bar"><i></i><i></i><i></i><span>localhost:8080/dashboard</span></div>
-        <div class="stage">
-          <img class="on" src="img/about-garuda.jpg" alt="Garuda dashboard overview with the map of its views">
-          <img src="img/create-workspace.jpg" alt="Creating a workspace by pasting a repository link" loading="lazy">
-          <img src="img/docs-to-guardrails.jpg" alt="Design documents turned into enforced rules" loading="lazy">
-          <img src="img/data-logic-audit.jpg" alt="Data and logic audit catching a 10x mismatch between two calculations" loading="lazy">
-        </div>
-        <p class="win-cap" id="win-cap">The front page: every part of Garuda, one click away.</p>
-      </div>
-    </div>
-    <figure class="demo">
-      <video id="demo-video" controls muted loop playsinline preload="metadata" poster="img/demo-poster.jpg" aria-label="Animated walkthrough of the Garuda dashboard">
-        <source src="img/demo.mp4" type="video/mp4">
-      </video>
-      <figcaption>A 10 second animated walkthrough of the dashboard. It is an illustration, so some on-screen text is approximate. The screenshots above are the real screens.</figcaption>
-    </figure>
-    <div class="callouts">
-      <div><h3>Guarded edits</h3><p>Checks run before and after every edit your assistant makes, and again on every pull request.</p></div>
-      <div><h3>A person decides</h3><p>When an assistant proposes a rulebook, a formula choice or a fix to a data mismatch, it waits for a named person to sign off.</p></div>
-      <div><h3>Plugs into your tools</h3><p>MCP for any assistant, skills, a GitHub Action, and Slack or Teams alerts.</p></div>
+    <div class="pains">
+      <div><h3>It can't see what depends on the code</h3><p>A three-line change can reach payments, reports and other services that nobody thought to check.</p></div>
+      <div><h3>It doesn't know your rules</h3><p>Your team's decisions live in design docs and people's heads, not in the assistant's context.</p></div>
+      <div><h3>Nobody can show what was checked</h3><p>When something breaks, there is no record of what was reviewed, by whom, or why it passed.</p></div>
     </div>
   </div>
 </section>
 
-<!-- HOW -->
 <section id="how">
   <div class="wrap">
     <div class="head measure">
-      <h2>Three moments in every change</h2>
-      <p class="lead">Your assistant is good at writing code. It does not automatically know every decision your team made, every part of the system that depends on the code, or every rule that has to stay true.</p>
+      <h2>How it works</h2>
+      <p class="lead">Three checks in every change, built into the assistant's workflow.</p>
     </div>
-    <div class="stages">
-      <div class="stg">
-        <div class="stg-text">
-          <span class="stg-num">1.0</span>
-          <h3>Before the edit, Garuda tells the assistant what it is about to touch.</h3>
-          <p>The assistant asks first, so it starts with the facts instead of guessing.</p>
-          <ul>
-            <li><b>Who depends on it.</b> Direct callers, and how far a change spreads.</li>
-            <li><b>How critical it is.</b> High, medium or low tier.</li>
-            <li><b>Which rules apply.</b> Your policies and the decisions in your docs.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="card-h">Pre-edit briefing<span class="chip c-lime">TALON</span></div>
-          <div class="brief"><span class="k">GARUDA TALON PRE-EDIT BRIEFING</span>
-<span class="dim">Target:</span>  internal/store/merkle_v1.go (AppendLeafAndSealTx)
-<span class="dim">Tier:</span>    HIGH_SEVERE (18 direct callers · ~60 transitive)
-<span class="dim">Rules:</span>   ADR-0002 (RFC 6962 Canonical Merkle Layer)
-<span class="dim">Verdict:</span> ALLOW → call garuda.talon_verify_edit after edit</div>
-          <p class="card-note">Example from the dashboard, briefing an assistant before it edits Garuda's own ledger code.</p>
-        </div>
-      </div>
-
-      <div class="stg">
-        <div class="stg-text">
-          <span class="stg-num">2.0</span>
-          <h3>After the edit, every change gets a verdict.</h3>
-          <p>Garuda checks the change against your rules and tells the assistant how to fix what it broke.</p>
-          <ul>
-            <li><b>Four verdicts.</b> Allow, warn, review or block.</li>
-            <li><b>Only what is new.</b> Problems the change introduced are kept apart from old ones.</li>
-            <li><b>Repair steps.</b> Plain instructions the assistant can follow.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="card-h">Talon guard · 10 files changed<span class="chip c-allowf">ALLOW</span></div>
-          <div class="card-b">
-            <div class="meter">
-              <div class="new"><b>0</b><span>new violations from this change</span></div>
-              <div><b>34</b><span>older problems, counted separately</span></div>
-            </div>
-            <div class="chips" style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip c-allowf">ALLOW</span><span class="chip c-warn">WARN</span><span class="chip c-review">REVIEW</span><span class="chip c-blockf">BLOCK</span></div>
-          </div>
-          <p class="card-note">Recorded on a real commit to Garuda's own repository, 19 November 2026.</p>
-        </div>
-      </div>
-
-      <div class="stg">
-        <div class="stg-text">
-          <span class="stg-num">3.0</span>
-          <h3>At review, you have proof you can hand to anyone.</h3>
-          <p>Saved checks become receipts in a Merkle log, so anyone can see later whether a record was changed.</p>
-          <ul>
-            <li><b>A receipt per decision.</b> With the exact command to reproduce it.</li>
-            <li><b>A pull request check.</b> BLOCK fails it; make it required and nobody merges past it.</li>
-            <li><b>Verification.</b> Check a receipt and its proof yourself.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="card-h">Evidence log<span class="chip c-lime">COMMITTED ✓</span></div>
-          <div class="card-b">
-            <dl class="kv">
-              <dt>Receipt</dt><dd>f7d109f685632559</dd>
-              <dt>Seal</dt><dd>RFC 6962 block #2012</dd>
-              <dt>Graph</dt><dd>2,228 entities · 9,353 relationships</dd>
-              <dt>Reproduce</dt><dd>garuda check --commit 35a29fdf0f9e --worktree-dirty --dirty-tree-hash a500dfec6b44</dd>
-            </dl>
-          </div>
-          <p class="card-note">From the same recorded run.</p>
-        </div>
-      </div>
-    </div>
+    <ol class="steps3">
+      <li><h3>Before the edit</h3><p>Garuda tells the assistant what depends on the code, how critical it is and which of your rules apply.</p><div class="eg">Tier: HIGH (18 callers)
+Rule: ADR-0002 applies</div></li>
+      <li><h3>After the edit</h3><p>The change gets a verdict: allow, warn, review or block, with plain steps to fix what it broke. Old problems are counted separately.</p><div class="eg">New violations: 0
+Verdict: ALLOW</div></li>
+      <li><h3>At review</h3><p>Each saved check becomes a tamper-evident receipt, and the pull request check stops a blocked change from merging.</p><div class="eg">Receipt: f7d109f685632559
+Sealed: RFC 6962 log</div></li>
+    </ol>
   </div>
 </section>
 
-<!-- PRIVACY -->
-<section id="privacy" class="privacy band">
+<section id="why" class="band">
+  <div class="wrap">
+    <div class="head measure">
+      <h2>Why Garuda</h2>
+      <p class="lead">Other tools review code or map it. Garuda checks each change against your own rules, gives the same answer every time, and shows its evidence.</p>
+    </div>
+    <div class="cmp-wrap">
+      <table class="cmp">
+        <thead><tr><th scope="col"></th><th scope="col" class="g">Garuda</th><th scope="col">AI code review</th><th scope="col">Blast-radius tools</th><th scope="col">The assistant checking itself</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Checks against your team's rules</th><td class="g">Yes, drafted from your docs and approved by you</td><td>Some, through custom instructions</td><td>No</td><td>Only if it remembers them</td></tr>
+          <tr><th scope="row">Same answer every time</th><td class="g">Yes, deterministic</td><td>No</td><td>Yes</td><td>No</td></tr>
+          <tr><th scope="row">When it checks</th><td class="g">Before and after every edit, and on the pull request</td><td>At the pull request</td><td>When you run it</td><td>When it decides to</td></tr>
+          <tr><th scope="row">Says what it could not verify</th><td class="g">Yes, in every verdict</td><td>Rarely</td><td>No</td><td>Rarely</td></tr>
+          <tr><th scope="row">Proof of what was checked</th><td class="g">Tamper-evident receipts</td><td>Review comments</td><td>No</td><td>No</td></tr>
+          <tr><th scope="row">Where your code goes</th><td class="g">Nowhere. It runs on your machine</td><td>Usually to the vendor's cloud</td><td>Usually stays local</td><td>To the model provider</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small cmp-note">General categories; individual tools differ. Garuda works alongside AI code review rather than replacing it.</p>
+  </div>
+</section>
+
+<section id="privacy" class="privacy">
   <div class="wrap">
     <div>
       <h2>Your code stays on your machine</h2>
-      <p class="lead" style="margin-top:16px">Garuda is built to sit next to your most sensitive code: payments, ledgers, health data. So it was designed from the start to need nothing from us.</p>
-      <ul class="facts">
-        <li><h3>It runs where your code is</h3><p>Analysis, the code graph and every check run locally. Results live in a PostgreSQL database on your own machine, which setup starts on 127.0.0.1.</p></li>
-        <li><h3>There is no Garuda cloud</h3><p>No account with us and nothing to sign up for. The dashboard's login exists only on your machine.</p></li>
-        <li><h3>Garuda itself uses no AI model</h3><p>Its analysis and checks are deterministic code, so Garuda sends nothing to an AI provider. The analyzer is tested to give identical results on repeated runs.</p></li>
-        <li><h3>Telemetry is off</h3><p>It stays off unless you switch it on and give it an address of your own. There is no default destination.</p></li>
-        <li><h3>The dashboard loads nothing from the internet</h3><p>No outside scripts, fonts or trackers. It works on an air-gapped machine.</p></li>
-        <li><h3>Every line is open</h3><p>Read it, audit it, build it yourself.</p></li>
+      <p class="lead" style="margin-top:16px">Built to sit next to your most sensitive code, so it needs nothing from us.</p>
+      <ul class="facts4">
+        <li><h3>Runs where your code is</h3><p>Analysis and checks run locally, with results in a local database.</p></li>
+        <li><h3>No Garuda cloud</h3><p>No account and nothing to sign up for.</p></li>
+        <li><h3>No AI model inside</h3><p>The checks are deterministic code, so nothing goes to an AI provider.</p></li>
+        <li><h3>Telemetry off, every line open</h3><p>Off unless you turn it on. Read and audit all of it.</p></li>
       </ul>
     </div>
     <div class="diagram">
@@ -644,146 +616,11 @@ footer{padding:64px 0 40px;font-size:14.5px;color:var(--muted)}
   </div>
 </section>
 
-<!-- REAL OUTPUT -->
-<section id="output">
+<section id="start" class="band">
   <div class="wrap">
     <div class="head measure">
-      <h2>Real output, as printed</h2>
-      <p class="lead">Two recorded runs, shortened, with nothing reworded.</p>
-    </div>
-    <div class="term" id="term">
-      <div class="term-tabs" role="tablist" aria-label="Recorded runs">
-        <button role="tab" aria-selected="true" data-run="demo">garuda demo</button>
-        <button role="tab" aria-selected="false" data-run="guard">guard on a real commit</button>
-      </div>
-      <pre id="term-out" aria-live="off"></pre>
-      <noscript><pre>Turn on JavaScript to see the recorded runs, or read them in the repository README.</pre></noscript>
-    </div>
-    <p class="small term-note" id="term-note"></p>
-  </div>
-</section>
-
-<!-- AGENTS -->
-<section id="agents" class="band">
-  <div class="wrap">
-    <div class="head measure">
-      <h2>One Garuda for every assistant you use</h2>
-      <p class="lead">Cursor, Claude Code and Codex all talk to the same Garuda on your machine. They see the same rules and the same code graph, and their work lands in the same evidence log.</p>
-    </div>
-    <div class="handoff" id="handoff" aria-label="A task handed from Cursor to Claude Code to Codex through Garuda">
-      <div class="agents-row">
-        <div class="agent"><b>Cursor</b><span>starts the task</span></div>
-        <div class="hop"><i></i><span>checkpoint</span></div>
-        <div class="agent"><b>Claude Code</b><span>resumes it</span></div>
-        <div class="hop"><i></i><span>checkpoint</span></div>
-        <div class="agent"><b>Codex</b><span>finishes it</span></div>
-      </div>
-      <div class="ground">Garuda on your machine: one set of rules, one code graph, one evidence log</div>
-    </div>
-    <p class="small" style="margin-top:14px">Hand a task from one assistant to another. Garuda saves a checkpoint of where the first one got to and transfers ownership, and the next one resumes from it. A checkpoint can be resumed once.</p>
-
-    <div class="agent-grid">
-      <div>
-        <h3 class="serif-sub">Six skills your assistant can add</h3>
-        <p class="small" style="margin-bottom:14px">Short playbooks that tell the assistant when to call Garuda. They come with the Claude Code plugin, and the files are in the repository for any other assistant.</p>
-        <dl class="skills">
-          <div><dt>pre-edit-governance</dt><dd>Before changing code: proceed, revise, or ask a human?<span class="ex">Try: &ldquo;Is it safe to change ChargeCustomer?&rdquo;</span></dd></div>
-          <div><dt>change-impact</dt><dd>Who calls this, and how far does the damage spread?<span class="ex">Try: &ldquo;What breaks if I change ChargeCustomer?&rdquo;</span></dd></div>
-          <div><dt>post-edit-verification</dt><dd>After the edit: any new violations in this diff?<span class="ex">Try: &ldquo;Check my changes before I open the pull request.&rdquo;</span></dd></div>
-          <div><dt>violation-repair</dt><dd>A change was blocked. Fix it without breaking something else.<span class="ex">Try: &ldquo;Garuda blocked my change. Help me fix it.&rdquo;</span></dd></div>
-          <div><dt>architecture-review</dt><dd>Does the real code match the documented design?<span class="ex">Try: &ldquo;Does our code follow our written design decisions?&rdquo;</span></dd></div>
-          <div><dt>evidence-verification</dt><dd>Is this claim backed by code, and is the receipt genuine?<span class="ex">Try: &ldquo;Prove that handlers never call the database directly.&rdquo;</span></dd></div>
-        </dl>
-        <a class="textlink" href="https://github.com/myshra777-ai/garuda/tree/main/skills">Browse the skill files</a>
-      </div>
-      <div>
-        <h3 class="serif-sub">What your assistant can ask</h3>
-        <p class="small" style="margin-bottom:14px">54 tools over MCP, 41 of them read-only. A few of them:</p>
-        <table class="asks">
-          <tr><td>What breaks if I change this?</td><td><code>garuda.blast_radius</code></td></tr>
-          <tr><td>Can I edit this file, and which rules apply?</td><td><code>garuda.talon_pre_edit</code></td></tr>
-          <tr><td>Did my edit break a rule?</td><td><code>garuda.talon_verify_edit</code></td></tr>
-          <tr><td>Do the docs and the code disagree?</td><td><code>garuda.detect_contradictions</code></td></tr>
-          <tr><td>Is this receipt genuine?</td><td><code>garuda.verify_receipt</code></td></tr>
-          <tr><td>Pass this task to another assistant</td><td><code>garuda.handoff</code>, <code>garuda.resume</code></td></tr>
-        </table>
-        <p class="small" style="margin-top:14px">The dashboard's Agents and Sessions view shows each assistant's sessions on your machine.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURES -->
-<section id="features">
-  <div class="wrap">
-    <div class="head measure">
-      <h2>Everything in the free engine</h2>
-      <p class="lead">All of this is open source and runs locally.</p>
-    </div>
-    <div class="feat">
-      <div class="grp"><h3>For your AI assistant</h3><ul>
-        <li>An MCP server with 54 tools and 6 skills</li>
-        <li>Plugins for Claude Code and Codex; <code>garuda init</code> sets up Cursor and Claude Desktop</li>
-        <li>A guard that runs before and after every edit</li>
-        <li>Read-only mode, and a named human approver for tools that change state</li>
-        <li>Task handoff between assistants</li>
-      </ul></div>
-      <div class="grp"><h3>For your rules</h3><ul>
-        <li>Ready-made rule sets: layered, hexagonal, microservices, no circular imports, financial, zero-trust auth, AI agent safety, PII and GDPR/HIPAA, idempotent mutations</li>
-        <li>Your design docs and ADRs turned into rules, linked to the code they describe</li>
-        <li>No docs yet? A drafted rulebook from your code, for you to approve</li>
-        <li>Import from ArchUnit, Dependency-Cruiser and Import Linter</li>
-      </ul></div>
-      <div class="grp"><h3>For every pull request</h3><ul>
-        <li>A GitHub Action that posts the verdict, a receipt hash and a command to reproduce it</li>
-        <li>BLOCK fails the check; make it required and nobody merges past it</li>
-        <li>A verdict comment, and findings in GitHub's Security tab</li>
-        <li>Optional Slack or Teams alerts</li>
-      </ul></div>
-      <div class="grp"><h3>Code graph and impact</h3><ul>
-        <li>A graph of your system: every function, type and import, and who calls what</li>
-        <li>How far a change spreads, and high, medium and low tiers for critical code</li>
-        <li>A focused map of the neighbourhood you care about, not one tangled graph</li>
-      </ul></div>
-      <div class="grp"><h3>For evidence</h3><ul>
-        <li>An RFC 6962 Merkle log of saved decisions</li>
-        <li>Receipts you can verify, with the exact command that produced them</li>
-        <li>Inclusion proofs you can check from the dashboard</li>
-      </ul></div>
-      <div class="grp"><h3>For numbers that disagree</h3><ul>
-        <li>Lines up two versions of the same metric, for example one query dividing by <code>1e7</code> and another by <code>1e8</code></li>
-        <li>Shows the formulas it found in the code and asks a person to decide. It does not guess.</li>
-      </ul></div>
-    </div>
-    <p class="langs"><b>Languages.</b> Go is read with the compiler's own type checker. Python and TypeScript are in Beta. Java is in Beta in the latest source.</p>
-  </div>
-</section>
-
-<!-- WHO -->
-<section id="who" class="who band">
-  <div class="wrap">
-    <div class="grid-letters" id="letters" aria-hidden="true"></div>
-    <div>
-      <h2>Built for code where one mistake is expensive</h2>
-      <p class="lead" style="margin-top:16px">For teams that already use AI assistants a lot, on a real codebase with rules that matter.</p>
-      <ul class="domains">
-        <li><b>Payments and fintech</b><span>Money movement goes through the layer that guards it.</span></li>
-        <li><b>Ledgers and billing</b><span>Two teams computing the same number get the same answer.</span></li>
-        <li><b>Commerce</b><span>Checkout, pricing and inventory rules do not drift.</span></li>
-        <li><b>Health data</b><span>Data-access limits hold when an assistant edits the code.</span></li>
-        <li><b>Data platforms</b><span>The formulas behind reports stay the ones you agreed on.</span></li>
-        <li><b>Platform teams</b><span>One set of architecture rules across many repositories.</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- INSTALL -->
-<section id="install">
-  <div class="wrap">
-    <div class="head measure">
-      <h2>Install in a few minutes</h2>
-      <p class="lead">One command installs it, starts a local database and the dashboard, and prints your login.</p>
+      <h2>Get started in a few minutes</h2>
+      <p class="lead">One command installs Garuda, starts a local database and opens the dashboard.</p>
     </div>
     <div class="install">
       <div>
@@ -820,13 +657,11 @@ cd garuda
 garuda rulebook generate    <span class="dim"># drafts rules from your code</span>
 garuda check . --diff HEAD  <span class="dim"># checks what you just changed</span></pre>
         <p class="small"><code>garuda init</code> also connects Claude Code, Claude Desktop and Cursor for you.</p>
-        <div class="tested">Tested end to end on Linux. The Windows scripts are checked automatically and were fixed on a real Windows 11 PC. macOS has no recorded run yet. <a href="https://github.com/myshra777-ai/garuda/blob/main/INSTALL.md#what-has-been-tested">What has been tested</a></div>
       </div>
     </div>
-
-    <div class="connect" id="connect">
-      <h3 class="serif-sub">Add Garuda to your assistant</h3>
-      <p class="small" style="margin-bottom:18px">Install Garuda first. The plugins and the MCP server use the <code>garuda-mcp</code> program and the local database that setup creates.</p>
+    <details class="more-assist" id="connect">
+      <summary>Add Garuda to your assistant by hand</summary>
+      <div class="connect" style="margin-top:18px">
       <div class="crow">
         <div class="cname">Claude Code<span>plugin with the six skills</span></div>
         <div class="cact">
@@ -854,134 +689,45 @@ garuda check . --diff HEAD  <span class="dim"># checks what you just changed</sp
           <p class="small">The database address is the default that setup creates. Set <code>GARUDA_WORKSPACE</code> to your project's workspace name.</p>
         </div>
       </div>
-    </div>
+      </div>
+    </details>
   </div>
 </section>
 
-<!-- LIMITS -->
-<section id="limits" class="band">
+<section id="faq">
   <div class="wrap">
     <div class="head measure">
-      <h2>What Garuda does not do</h2>
-      <p class="lead">We would rather you trust the rest of this page.</p>
+      <h2>Questions people ask</h2>
     </div>
-    <div class="limits">
-      <div><h3>It is not a cage for your assistant</h3><p>An assistant can ignore advice, and hooks can be switched off. The check that cannot be skipped is a required pull request check.</p></div>
-      <div><h3>Static analysis has edges</h3><p>Go is read with the compiler's type checker. Python, TypeScript and Java are high-precision but Beta, and dynamic runtime behaviour is outside what static analysis can see.</p></div>
-      <div><h3>The log proves records were not changed</h3><p>It does not prove the analysis was complete. And a result is sealed only when the check is saved.</p></div>
-      <div><h3>The number tools help a person decide</h3><p>They line up the formulas you point them at. They do not understand every calculation in a company by themselves.</p></div>
+    <div class="faq">
+      <details><summary>How is this different from open-source blast-radius tools?</summary><div class="a"><p>Blast radius is one input to Garuda, not the product. Garuda adds your team's own rules, a verdict before and after each edit, a list of what it could not verify, and a tamper-evident record of every saved check.</p></div></details>
+      <details><summary>Why not just ask my AI assistant to check its own code?</summary><div class="a"><p>Then the model is grading its own work. It can skip a rule, invent one or change its answer on the next run, and it leaves no record. Garuda's checks are deterministic and run outside the assistant, so the same change always gets the same verdict.</p></div></details>
+      <details><summary>How does Garuda learn our rules?</summary><div class="a"><p>It reads your code and your design documents and decision records, and drafts a rulebook with <code>garuda rulebook generate</code>. A person on your team reviews and approves it before anything is enforced. Starter templates cover common cases such as payment code and layered architecture.</p></div></details>
+      <details><summary>Does my code leave my machine?</summary><div class="a"><p>No. Garuda runs locally, there are no Garuda servers, and telemetry is off unless you switch it on and send it to an address of your own. Slack or Teams alerts and the pull request check run only if you set them up.</p></div></details>
+      <details><summary>Which languages and assistants does it support?</summary><div class="a"><p>Go is analysed with the compiler's own type checker. Python and TypeScript are supported in beta, and Java support is in beta on the main branch. It works with Claude Code, Cursor, Codex and any assistant that speaks MCP.</p></div></details>
+      <details><summary>Which systems can I install it on?</summary><div class="a"><p>There are installers for macOS, Linux and Windows. To try it without installing a database, run <code>npx garuda-guard demo</code> with Node 18 or newer.</p></div></details>
+      <details><summary>Does it replace code review?</summary><div class="a"><p>No. It tells reviewers where to look, stops changes that break a known rule, and leaves business decisions to people.</p></div></details>
+      <details><summary>Is it free? What will be paid?</summary><div class="a"><p>The Garuda engine is free and open source under Apache-2.0, and stays that way. Garuda Teams, for organisations working across many repositories, is in development: routing, approvals and audit history. Early teams can join a free pilot.</p></div></details>
+      <details><summary>What doesn't Garuda do?</summary><div class="a"><p>It is not a cage: an assistant can ignore advice and local hooks can be switched off, which is why the required pull request check matters. Static analysis cannot see every runtime behaviour. A receipt proves a record was not changed afterwards, not that the analysis was complete.</p></div></details>
+      <details><summary>Can you help us set it up?</summary><div class="a"><p>Yes. We run pilots on one repository, architecture audits, and custom rule packs for domains such as payments and data pipelines. Book a demo and tell us what you need.</p></div></details>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services">
+<div class="closing" id="talk">
   <div class="wrap">
-    <div class="head measure">
-      <h2>Work with us</h2>
-      <p class="lead">The software is free. When you want help putting it to work, we do it with you. Each engagement is quoted after a short call.</p>
-    </div>
-    <div class="svc">
-      <div class="srow">
-        <h3>Architecture audit</h3>
-        <p>We run Garuda read-only on one of your repositories and hand you a report: the rules your code already follows, where recent changes drift from them, and what to enforce first. Every finding names the rule it breaks.</p>
-        <button class="btn js-req" data-req="Architecture audit" type="button">Request an audit</button>
-      </div>
-      <div class="srow">
-        <h3>Pilot <span class="tag now">FREE FOR EARLY TEAMS</span></h3>
-        <p>Garuda set up with you on one repository for a few weeks, with your assistants and your pull requests. We go through the findings together. Your code stays on your machines.</p>
-        <button class="btn js-req" data-req="Pilot" type="button">Apply for a pilot</button>
-      </div>
-      <div class="srow">
-        <h3>Setup and rollout</h3>
-        <p>Install for your team, connect every assistant, turn on the pull request check and make it required, and draft your first rulebook.</p>
-        <button class="btn js-req" data-req="Setup and rollout" type="button">Request setup</button>
-      </div>
-      <div class="srow">
-        <h3>Custom rule packs</h3>
-        <p>Rules written for your domain and your codebase: payments and ledgers, health data, data pipelines, or your own architecture.</p>
-        <button class="btn js-req" data-req="Custom rule pack" type="button">Ask for rules</button>
-      </div>
-      <div class="srow">
-        <h3>Enterprise request <span class="tag later">PLANNED</span></h3>
-        <p>Shared rules across every repository and assistant, approvals for exceptions with a record of who decided, single sign-on, long-term audit storage. Not available yet. Tell us what you need and it shapes what we build first.</p>
-        <button class="btn js-req" data-req="Enterprise request" type="button">Send your requirements</button>
-      </div>
-      <div class="srow">
-        <h3>Something else</h3>
-        <p>A language you need, an integration, or a question about how Garuda fits your setup.</p>
-        <button class="btn js-req" data-req="Custom request" type="button">Make a custom request</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- GUIDES -->
-<section id="guides" class="band">
-  <div class="wrap">
-    <div class="head measure">
-      <h2>Guides</h2>
-      <p class="lead">Short reads, straight from the repository.</p>
-    </div>
-    <div class="guides">
-      <a class="guide" href="https://github.com/myshra777-ai/garuda/blob/main/docs/WHY_GARUDA.md"><b>Why Garuda</b><span>The business case in two minutes, for engineering leaders.</span><em>Read the case</em></a>
-      <a class="guide" href="https://github.com/myshra777-ai/garuda/blob/main/QUICKSTART.md"><b>Quickstart</b><span>From install to your first blocked change.</span><em>Start here</em></a>
-      <a class="guide" href="https://github.com/myshra777-ai/garuda/blob/main/docs/TALON.md"><b>How the check works</b><span>What happens before and after every edit.</span><em>Read the guide</em></a>
-      <a class="guide" href="https://github.com/myshra777-ai/garuda/blob/main/docs/DASHBOARD_WALKTHROUGH.md"><b>Dashboard tour</b><span>Every view in the dashboard, one page each.</span><em>Take the tour</em></a>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="wrap contact">
     <div>
-      <h2>Talk to us</h2>
-      <p class="lead" style="margin:16px 0 28px">Book a call, ask a question, or send a request. You will hear back from the person who builds Garuda.</p>
-      <div class="mailbox">
-        <span class="small">Email</span>
-        <a href="mailto:contact@getgaruda.in" class="mail">contact@getgaruda.in</a>
+      <h2>See it on your own code.</h2>
+      <p>Book a 30-minute demo. Bring one repository and one design document, and we'll show you which of your rules your recent changes touched.</p>
+      <div class="reach">
+        <span class="mail" id="mail-text">contact@getgaruda.in</span>
         <button class="btn sm" id="copy-mail" type="button">Copy address</button>
       </div>
-      <a class="btn ink js-call" id="call-btn" href="mailto:contact@getgaruda.in?subject=Book%20a%20call%20about%20Garuda" style="margin-top:22px">Book a call</a>
-      <p class="small" style="margin-top:12px">A 20 to 30 minute call. We can look at one of your repositories together.</p>
-      <p class="small" style="margin-top:8px">Product help: <a href="mailto:support@getgaruda.in">support@getgaruda.in</a>. Press and general questions: <a href="mailto:info@getgaruda.in">info@getgaruda.in</a>.</p>
-    </div>
-    <form class="form" id="req-form" novalidate>
-      <label><span class="lbl">What do you need?</span>
-        <select name="type" id="req-type">
-          <option>Book a call</option>
-          <option>Architecture audit</option>
-          <option>Pilot</option>
-          <option>Setup and rollout</option>
-          <option>Custom rule pack</option>
-          <option>Enterprise request</option>
-          <option>Custom request</option>
-          <option>Question</option>
-        </select>
-      </label>
-      <div class="two">
-        <label><span class="lbl">Your name</span><input name="fullname" autocomplete="name" required></label>
-        <label><span class="lbl">Work email</span><input name="email" type="email" autocomplete="email"></label>
-      </div>
-      <label><span class="lbl">Company and team size <span class="opt">(optional)</span></span><input name="company" autocomplete="organization"></label>
-      <label><span class="lbl">Tell us about it</span><textarea name="msg" rows="5" required placeholder="Your stack, the assistants you use, what you want Garuda to catch, and good times for a call."></textarea></label>
-      <button class="btn ink" type="submit">Write the email</button>
-      <p class="small form-note" id="form-note" aria-live="polite">This opens your email app with everything filled in, addressed to contact@getgaruda.in.</p>
-    </form>
-  </div>
-</section>
-
-<!-- CLOSING -->
-<div class="closing">
-  <div class="wrap">
-    <div>
-      <h2>Let AI move fast. Keep control of what it changes.</h2>
-      <p>Free, open source, and running on your machine in a few minutes.</p>
+      <p class="small" style="margin-top:10px">Product help: support@getgaruda.in</p>
     </div>
     <div class="ctas">
-      <a class="btn lime" href="#install">Install Garuda</a>
-      <a class="btn js-call" href="#contact">Book a call</a>
+      <a class="btn lime js-call" href="mailto:contact@getgaruda.in?subject=Book%20a%20Garuda%20demo">Book a demo</a>
+      <a class="btn" id="ask-btn" href="https://www.linkedin.com/in/rohit-mishra-73714016b/" target="_blank" rel="noopener">Ask us on LinkedIn</a>
     </div>
   </div>
 </div>
@@ -993,34 +739,26 @@ garuda check . --diff HEAD  <span class="dim"># checks what you just changed</sp
     <div class="foot">
       <div class="about">
         <a class="brand" href="#top"><img src="img/mark.png" alt="" width="26" height="18">Garuda</a>
-        <p>Change control for AI-written code.</p>
+        <p>Know what a change affects before you merge it.</p>
       </div>
       <div><h4>Product</h4><ul>
         <li><a href="#how">How it works</a></li>
+        <li><a href="#why">Why Garuda</a></li>
         <li><a href="#privacy">Privacy</a></li>
-        <li><a href="#agents">Agents</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#install">Install</a></li>
-      </ul></div>
-      <div><h4>Services</h4><ul>
-        <li><a href="#services">Architecture audit</a></li>
-        <li><a href="#services">Pilot</a></li>
-        <li><a href="#services">Setup and rollout</a></li>
-        <li><a href="#services">Custom rule packs</a></li>
-        <li><a href="#services">Enterprise request</a></li>
+        <li><a href="#start">Get started</a></li>
       </ul></div>
       <div><h4>Resources</h4><ul>
         <li><a href="https://github.com/myshra777-ai/garuda">GitHub</a></li>
         <li><a href="https://github.com/myshra777-ai/garuda/blob/main/QUICKSTART.md">Quickstart</a></li>
         <li><a href="https://github.com/myshra777-ai/garuda/blob/main/INSTALL.md">Install guide</a></li>
         <li><a href="https://github.com/myshra777-ai/garuda/blob/main/SECURITY.md">Security</a></li>
-        <li><a href="https://github.com/myshra777-ai/garuda/blob/main/LICENSE">License</a></li>
       </ul></div>
       <div><h4>Contact</h4><ul>
-        <li><a href="mailto:contact@getgaruda.in">contact@getgaruda.in</a></li>
-        <li><a href="mailto:support@getgaruda.in">support@getgaruda.in</a></li>
-        <li><a class="js-call" href="#contact">Book a call</a></li>
-        <li><a href="#contact">Send a request</a></li>
+        <li><a class="js-call" href="#talk">Book a demo</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="https://www.linkedin.com/in/rohit-mishra-73714016b/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><span class="small">contact@getgaruda.in</span></li>
+        <li><span class="small">support@getgaruda.in</span></li>
       </ul></div>
     </div>
     <div class="base"><span>&copy; 2026 Garuda</span><span>Open source under Apache-2.0</span></div>
@@ -1050,10 +788,13 @@ Rules:
 (function(){
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---- settings ----
-     CALL_URL: paste a Cal.com or Calendly booking link here and every
-     "Book a call" button goes there. Leave it empty to use email. */
+  /* ---- settings: fill these in ----
+     CALL_URL: a Cal.com or Google Calendar booking link. Every "Book a demo"
+       button goes there. Empty = an email with the subject filled in.
+     WHATSAPP: your WhatsApp business number with country code, digits only,
+       e.g. '919800000000'. Empty = "Ask us" opens your LinkedIn profile. */
   var CALL_URL = '';
+  var WHATSAPP = '';
   var MAIL = 'contact@getgaruda.in';
 
   function copyText(text, btn, label){
@@ -1070,15 +811,11 @@ Rules:
     } catch(e){ fallback(); }
   }
 
-  /* nav border on scroll */
   var nav = document.getElementById('nav');
   function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 8); }
   window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
-  /* setup prompt */
   var promptText = document.getElementById('setup-prompt').value;
-  var cp = document.getElementById('copy-prompt');
-  cp.addEventListener('click', function(){ copyText(promptText, cp, 'Copy setup prompt'); });
   document.querySelectorAll('.js-prompt').forEach(function(b){ b.addEventListener('click', function(){ copyText(promptText, b, 'Copy setup prompt'); }); });
 
   /* hero sequence */
@@ -1105,153 +842,6 @@ Rules:
   document.getElementById('replay').addEventListener('click', run);
   run();
 
-  /* product window */
-  var caps = [
-    'The front page: every part of Garuda, one click away.',
-    'Paste a GitHub link or a folder path, and Garuda reads the code for you.',
-    'Design docs and decision records become rules linked to the code they talk about.',
-    'Two teams calculate the same metric differently. Garuda shows both formulas and asks a person to decide.'
-  ];
-  var shots = document.querySelectorAll('.stage img'), shotTabs = document.querySelectorAll('.win-side button'), cap = document.getElementById('win-cap');
-  shotTabs.forEach(function(b){
-    b.addEventListener('click', function(){
-      var n = +b.dataset.shot;
-      shotTabs.forEach(function(x){ x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
-      shots.forEach(function(img, i){ img.classList.toggle('on', i === n); });
-      cap.textContent = caps[n];
-    });
-  });
-
-  /* terminal replay (recorded output) */
-  var runs = {
-    demo: {
-      note: 'Recorded from garuda demo (v1.9.11). The sample service and its three problems are planted on purpose; the demo lists them rather than detecting them. Real detection runs on your own code with garuda check.',
-      lines: [
-        ['dim','$ garuda demo'],
-        ['','  [1/5] Sample Codebase Generated: /tmp/garuda-demo-acme-pay (131 lines across 4 Go files)'],
-        ['dim','        • internal/payment/checkout.go       (Injected Bug #1: Direct database/sql import)'],
-        ['dim','        • internal/payment/settlement.go     (Injected Bug #2: float64 fee math + 10x Crore drift)'],
-        ['dim','        • internal/store/ledger_repo.go      (Injected Bug #3: Upward store -> payment import)'],
-        ['',''],
-        ['','  [2/5] AST & Call-Graph Extraction (real run of the Garuda Go analyzer, no database needed):'],
-        ['ok','        ✓ Found 14 entities and 22 relationships in 15 ms'],
-        ['',''],
-        ['','  [3/5] Starter policy templates:'],
-        ['ok','        ✓ Installed the financial and layered templates into /tmp/garuda-demo-acme-pay/policies'],
-        ['',''],
-        ['','  [4/5] The three problems planted in this sample (what `garuda check` reports once Garuda is set up):'],
-        ['bad','        ✗ [BLOCK · CRITICAL] tpl-financial-no-direct-sql'],
-        ['dim','          Location: internal/payment/checkout.go:5 (CheckoutHandler.ProcessInstantCheckout)'],
-        ['dim','          Reason:   Payment code imports \'database/sql\' directly instead of domain.PaymentRepository.'],
-        ['bad','        ✗ [BLOCK · CRITICAL] tpl-financial-decimal-precision + DATA-LOGIC-AUDIT'],
-        ['dim','          Location: internal/payment/settlement.go:7 (CalculateSettlementFeeFloat64 / ComputeOpsClaimsPaidCrore)'],
-        ['dim','          Reason:   Uses float64 for currency math AND divides by 1e6 instead of 1e7 (48 Cr vs 4.8 Cr 10x drift).'],
-        ['bad','        ✗ [BLOCK · HIGH]     tpl-layered-no-upward-deps'],
-        ['dim','          Location: internal/store/ledger_repo.go:8 (PostgresLedgerRepo.RecordChargeTx)'],
-        ['dim','          Reason:   Persistence layer \'internal/store\' imports upper service layer \'internal/payment\'.'],
-        ['',''],
-        ['','  [5/5] What an AI agent would be told:'],
-        ['','        • Expected verdict: BLOCK (this demo lists the planted problems; it does not evaluate policies)'],
-        ['hl','          1. Remove "database/sql" from internal/payment/checkout.go; call h.repo.RecordChargeTx(ctx, req).'],
-        ['hl','          2. Replace float64 in internal/payment/settlement.go with domain.MoneyMinorUnits (int64) and 1e7 Crore divisor.'],
-        ['hl','          3. Move SettlementAuditDTO to internal/domain so internal/store does not import internal/payment.']
-      ]
-    },
-    guard: {
-      note: 'Recorded on 19 November 2026: Garuda\'s guard running on a commit to Garuda\'s own repository. 34 older problems exist elsewhere in the code; the commit added none, so the verdict is ALLOW.',
-      lines: [
-        ['dim','$ git commit -m "..."'],
-        ['','🔍 Analyzing Go workspace ~/garuda...'],
-        ['dim','   🧭 Build Receipt: lang=go platform=linux/amd64 cgo=on tags=[none] commit=35a29fdf0f9e-dirty graph_fp=89fde5e9c6a8'],
-        ['dim','   🏷️  Conditional Build: 333 active file(s), 2 file(s) excluded by build tags/platform'],
-        ['',''],
-        ['','🔒 Cryptographic Ledger Update:'],
-        ['dim','   Revision:    #13'],
-        ['','   Receipt SHA: f7d109f685632559'],
-        ['dim','   Reproduce:   GOOS=linux GOARCH=amd64 CGO_ENABLED=1 garuda check --target linux/amd64 --cgo=true --commit 35a29fdf0f9e --worktree-dirty --dirty-tree-hash a500dfec6b44 --workspace go-validation-10'],
-        ['ok','   Status:      COMMITTED ✓'],
-        ['','   🧠 Semantic graph saved (2228 entities, 9353 relationships, commit: 35a29fdf0f9ea5)'],
-        ['',''],
-        ['hl','  GARUDA TALON ACTIVE GUARD'],
-        ['dim','  Diff Scope:  10 file(s), 0 touched symbol(s)'],
-        ['dim','  Blast Radius:0 affected entities (CRITICAL=0, HIGH=0)'],
-        ['','  Violations:  Net-New=0  |  Baseline=34  |  ADR Contradictions=0'],
-        ['','  Merkle Seal: RFC 6962 block #2012'],
-        ['ok','  OUTCOME:     ALLOW']
-      ]
-    }
-  };
-  var out = document.getElementById('term-out'), note = document.getElementById('term-note');
-  var termTimers = [], current = 'demo', played = false;
-  function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-  function show(name, animate){
-    termTimers.forEach(clearTimeout); termTimers = [];
-    current = name; var r = runs[name]; note.textContent = r.note;
-    out.innerHTML = r.lines.map(function(l){ return '<span class="ln ' + l[0] + '">' + (esc(l[1]) || ' ') + '</span>'; }).join('');
-    var spans = out.querySelectorAll('.ln');
-    if (!animate || reduce){ spans.forEach(function(s){ s.classList.add('on'); }); return; }
-    spans.forEach(function(s, i){ termTimers.push(setTimeout(function(){ s.classList.add('on'); }, 120 + i*70)); });
-  }
-  var termTabs = document.querySelectorAll('.term-tabs button');
-  termTabs.forEach(function(b){
-    b.addEventListener('click', function(){
-      termTabs.forEach(function(x){ x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
-      played = true; show(b.dataset.run, true);
-    });
-  });
-  if ('IntersectionObserver' in window && !reduce){
-    show('demo', false); out.querySelectorAll('.ln').forEach(function(s){ s.classList.remove('on'); });
-    var io = new IntersectionObserver(function(es){
-      es.forEach(function(e){ if (e.isIntersecting && !played){ played = true; show(current, true); io.disconnect(); } });
-    }, {threshold:.3});
-    io.observe(document.getElementById('term'));
-  } else { show('demo', false); }
-
-  /* handoff animation, once */
-  var ho = document.getElementById('handoff');
-  if ('IntersectionObserver' in window && !reduce){
-    var hio = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ ho.classList.add('play'); hio.disconnect(); } }); }, {threshold:.6});
-    hio.observe(ho);
-  }
-
-  /* letter grid: Garuda's signals hidden in noise, lit one at a time while visible */
-  var words = ['ALLOW','BLOCK','REVIEW','SEALED','WARN','SUPPORTED','EVIDENCE'];
-  var grid = document.getElementById('letters');
-  var COLS = 15, ROWS = 11, ABC = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  var seed = 7; function rnd(){ seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
-  var rows = [], placed = [];
-  for (var r=0;r<ROWS;r++){ var row=[]; for (var c=0;c<COLS;c++){ row.push(ABC[Math.floor(rnd()*26)]); } rows.push(row); }
-  var usedRows = [1,2,4,5,7,8,10];
-  words.forEach(function(w, k){
-    var r = usedRows[k], c = Math.floor(rnd()*(COLS - w.length + 1));
-    for (var i=0;i<w.length;i++){ rows[r][c+i] = w[i]; }
-    placed.push({r:r, c:c, len:w.length});
-  });
-  var html = '';
-  for (var r2=0;r2<ROWS;r2++){
-    var line = '', c2 = 0;
-    while (c2 < COLS){
-      var hit = placed.filter(function(p){ return p.r === r2 && p.c === c2; })[0];
-      if (hit){ line += '<span class="w" data-w="' + placed.indexOf(hit) + '">' + rows[r2].slice(c2, c2+hit.len).join('') + '</span>'; c2 += hit.len; }
-      else { line += rows[r2][c2]; c2++; }
-    }
-    html += line + (r2 < ROWS-1 ? '\n' : '');
-  }
-  grid.innerHTML = html;
-  var wspans = grid.querySelectorAll('.w');
-  if (reduce){ wspans.forEach(function(s){ s.classList.add('lit'); }); }
-  else if ('IntersectionObserver' in window){
-    var wi = 0, wtimer = null;
-    function tick(){ wspans.forEach(function(s){ s.classList.remove('lit'); }); wspans[wi % wspans.length].classList.add('lit'); wi++; }
-    var gio = new IntersectionObserver(function(es){
-      es.forEach(function(e){
-        if (e.isIntersecting && !wtimer){ tick(); wtimer = setInterval(tick, 1700); }
-        if (!e.isIntersecting && wtimer){ clearInterval(wtimer); wtimer = null; }
-      });
-    }, {threshold:.4});
-    gio.observe(grid);
-  }
-
   /* install tabs */
   var pTabs = document.querySelectorAll('.tabs button'), panels = document.querySelectorAll('.panel');
   pTabs.forEach(function(b){
@@ -1264,8 +854,10 @@ Rules:
 
   /* MCP config + Add to Cursor */
   var serverCfg = { command: 'garuda-mcp', env: { DATABASE_URL: 'postgres://test:test@127.0.0.1:5433/garuda_test?sslmode=disable', GARUDA_WORKSPACE: 'default', GARUDA_TALON_ENFORCE: 'true' } };
-  document.getElementById('cursor-link').href = 'cursor://anysphere.cursor-deeplink/mcp/install?name=garuda&config=' + encodeURIComponent(btoa(JSON.stringify(serverCfg)));
-  document.getElementById('mcp-json').appendChild(document.createTextNode(JSON.stringify({ mcpServers: { garuda: Object.assign({ type: 'stdio' }, serverCfg) } }, null, 2)));
+  var cl = document.getElementById('cursor-link');
+  if (cl) cl.href = 'cursor://anysphere.cursor-deeplink/mcp/install?name=garuda&config=' + encodeURIComponent(btoa(JSON.stringify(serverCfg)));
+  var mj = document.getElementById('mcp-json');
+  if (mj) mj.appendChild(document.createTextNode(JSON.stringify({ mcpServers: { garuda: Object.assign({ type: 'stdio' }, serverCfg) } }, null, 2)));
 
   /* code-block copy buttons */
   document.querySelectorAll('.copy').forEach(function(btn){
@@ -1276,39 +868,20 @@ Rules:
     });
   });
 
-  /* booking + requests */
-  var form = document.getElementById('req-form'), typeSel = document.getElementById('req-type'), fnote = document.getElementById('form-note');
-  function pick(t){
-    for (var i=0;i<typeSel.options.length;i++){ if (typeSel.options[i].text === t){ typeSel.selectedIndex = i; } }
-    document.getElementById('contact').scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
-    if (!reduce){ form.classList.remove('flash'); void form.offsetWidth; form.classList.add('flash'); }
-    setTimeout(function(){ try { form.elements.fullname.focus({preventScroll:true}); } catch(e){} }, reduce ? 0 : 650);
-  }
-  document.querySelectorAll('.js-req').forEach(function(b){ b.addEventListener('click', function(){ pick(b.dataset.req); }); });
+  /* booking and asking */
+  var demoMail = 'mailto:' + MAIL + '?subject=' + encodeURIComponent('Book a Garuda demo') + '&body=' + encodeURIComponent('Hi, I would like a 30-minute demo.\n\nCompany:\nWhat we build:\nGood times:\n');
   document.querySelectorAll('.js-call').forEach(function(a){
-    if (CALL_URL){ a.href = CALL_URL; a.target = '_blank'; a.rel = 'noopener'; return; }
-    if (a.id === 'call-btn') return;
-    a.addEventListener('click', function(e){ e.preventDefault(); pick('Book a call'); });
+    if (CALL_URL){ a.href = CALL_URL; a.target = '_blank'; a.rel = 'noopener'; }
+    else { a.href = demoMail; }
   });
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    var f = form.elements, name = f.fullname.value.trim(), msg = f.msg.value.trim();
-    if (!name || !msg){ fnote.textContent = 'Add your name and a few lines about what you need.'; fnote.className = 'small form-note err'; (name ? f.msg : f.fullname).focus(); return; }
-    var type = typeSel.value, company = f.company.value.trim(), email = f.email.value.trim();
-    var subject = 'Garuda: ' + type + (company ? ' (' + company + ')' : '');
-    var body = msg + '\n\n--\n' + name + (email ? '\n' + email : '') + (company ? '\n' + company : '') + '\nRequest: ' + type;
-    window.location.href = 'mailto:' + MAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    fnote.textContent = 'Your email app should open with the message ready. If nothing opened, write to ' + MAIL + '.';
-    fnote.className = 'small form-note ok';
-  });
-  var dv = document.getElementById('demo-video');
-  if (dv && 'IntersectionObserver' in window && !reduce){
-    new IntersectionObserver(function(es){ es.forEach(function(e){
-      if (e.isIntersecting){ var pr = dv.play(); if (pr && pr.catch) pr.catch(function(){}); } else { dv.pause(); }
-    }); }, {threshold:.5}).observe(dv);
+  var ask = document.getElementById('ask-btn');
+  if (WHATSAPP){
+    ask.href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent('Hi, I have a question about Garuda: ');
+    ask.target = '_blank'; ask.rel = 'noopener'; ask.textContent = 'Ask us on WhatsApp';
   }
   var cm = document.getElementById('copy-mail');
   cm.addEventListener('click', function(){ copyText(MAIL, cm, 'Copy address'); });
+
 })();
 </script>
 </body>
