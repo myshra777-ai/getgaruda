@@ -1,11 +1,11 @@
-# Garuda website v4
+# Garuda website v5
 
 ## Publish
     cd ~/getgaruda
     git pull
     rm -rf img index.html DEPLOY.md
-    unzip -o ~/Downloads/getgaruda-site-v4.zip
-    git add -A && git commit -m "Website v4: shorter page, FAQ, comparison, book a demo"
+    unzip -o ~/Downloads/getgaruda-site-v5.zip
+    git add -A && git commit -m "Website v5: animated change trace, darker look"
     git push
 
 Keep the CNAME file. The commands above don't touch it.
